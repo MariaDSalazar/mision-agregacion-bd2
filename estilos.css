@@ -1,4 +1,4 @@
-/* Misión Agregación · paleta UIDE (azul, dorado, magenta) */
+/* Misión Agregación · una semana en Banco Quindé · paleta UIDE (azul, dorado, magenta) */
 :root {
   --azul: #002C71; --azul-osc: #001B47; --dorado: #EAAA00; --magenta: #910048;
   --texto: #2D3B45; --suave: #5f6b76; --bien: #1E9E5A; --mal: #C62839; --fondo-card: #fff;
@@ -83,12 +83,32 @@ input[type=text]:focus { outline: none; border-color: var(--dorado); }
 .progreso { height: 10px; border-radius: 99px; background: rgba(255, 255, 255, .18); overflow: hidden; margin: 6px 0 16px; }
 .progreso i { display: block; height: 100%; background: var(--dorado); border-radius: 99px; transition: width .5s; }
 
-/* ---------- intro de nivel ---------- */
-.globo { display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: center; margin-bottom: 14px; }
-.globo .dato { width: 90px; }
-.globo .texto { background: #fff; color: var(--texto); border-radius: 16px; padding: 14px 16px; position: relative; font-weight: 600; }
-.globo .texto::before { content: ""; position: absolute; left: -10px; top: 26px; border: 10px solid transparent; border-right-color: #fff; border-left: 0; }
-.caso { display: flex; align-items: center; gap: 12px; background: #f3f6fb; border-radius: 14px; padding: 12px 14px; margin-bottom: 12px; }
+/* ---------- oficina: gafete, indicadores y mensajes ---------- */
+.gafete { display: flex; align-items: center; gap: 14px; background: #fff; color: var(--texto); border-radius: 16px; padding: 12px 16px; border-top: 7px solid var(--dorado); box-shadow: 0 8px 22px rgba(0, 0, 0, .25); margin-bottom: 14px; }
+.card .gafete { box-shadow: none; border: 1.5px solid #dfe5ee; border-top: 7px solid var(--dorado); }
+.gafete .foto { width: 58px; height: 58px; border-radius: 12px; background: #eef3fb; color: var(--azul); display: grid; place-items: center; flex: none; }
+.gafete .foto .ic { width: 34px; height: 34px; }
+.gafete .quien { min-width: 0; }
+.gafete .quien b { display: block; color: var(--azul); font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gafete .cargo { display: block; color: var(--magenta); font-weight: 700; font-size: .85rem; }
+.gafete small { display: block; color: var(--suave); font-size: .75rem; }
+.gafete .banco { margin-left: auto; display: flex; flex-direction: column; align-items: center; color: var(--azul); font-weight: 800; font-size: .75rem; text-align: center; flex: none; }
+.gafete .banco .ic { width: 30px; height: 30px; color: var(--dorado); }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.kpi { background: rgba(255, 255, 255, .1); border-radius: 14px; padding: 10px 6px; text-align: center; font-size: .78rem; line-height: 1.25; }
+.kpi b { display: block; font-size: 1.45rem; color: var(--dorado); margin-bottom: 2px; }
+.msj { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: .95rem; flex: none; box-shadow: 0 0 0 3px #fff, 0 2px 8px rgba(0, 0, 0, .25); }
+.burbuja { flex: 1; min-width: 0; background: #eef3fb; border-radius: 4px 16px 16px 16px; padding: 10px 14px; }
+.burbuja .de { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: .78rem; color: var(--suave); margin-bottom: 4px; }
+.burbuja .de b { color: var(--azul); font-size: .9rem; }
+.burbuja .hora { margin-left: auto; font-family: var(--mono); }
+.burbuja p { margin: 0; font-weight: 600; }
+.burbuja .pregunta { font-size: 1.08rem; }
+.tu-resp { display: flex; align-items: center; gap: 6px; font-weight: 800; color: var(--magenta); margin: 0 0 8px; font-size: .9rem; }
+.cita { display: flex; gap: 10px; align-items: center; background: #fff; border-radius: 12px; padding: 8px 10px; margin: 6px 0 8px; }
+.cita .avatar { width: 34px; height: 34px; font-size: .78rem; box-shadow: none; }
+.caso { display: flex; align-items: center; gap: 12px; background: #f3f6fb; border-radius: 14px; padding: 12px 14px; margin-bottom: 12px; font-size: .9rem; }
 .caso .ic { width: 2em; height: 2em; color: var(--magenta); }
 .caso b { color: var(--azul); display: block; }
 
@@ -102,6 +122,8 @@ table.datos td.nulo { color: #b07f00; font-style: italic; }
 table.datos th.hl { background: var(--dorado); color: #1b2a3a; }
 table.datos td.hl { background: #fdf3d6; font-weight: 700; }
 table.datos td.nulo.hl { background: #fde6ee; color: var(--magenta); }
+table.datos td.est-ok { color: #146b3d; font-weight: 700; }
+table.datos td.est-no { color: var(--mal); font-weight: 700; background: #fdecee; }
 table.datos td .nocuenta { font-family: Poppins, sans-serif; font-size: .7rem; font-weight: 700; color: var(--magenta); margin-left: 6px; }
 table.datos tr.fuera td { opacity: .25; text-decoration: line-through; }
 table.datos tr.gfuera td { opacity: .3; }
@@ -127,8 +149,10 @@ table.datos tr.g td:first-child { box-shadow: inset 5px 0 0 var(--gc); }
   background: #fff; color: var(--azul); cursor: pointer; transition: transform .1s, background .2s, border-color .2s; text-align: center;
 }
 .op:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--dorado); }
-.op.cod { font-family: var(--mono); font-size: 1.15rem; }
-.op small { display: block; font-family: Poppins, sans-serif; font-size: .75rem; color: var(--suave); font-weight: 600; }
+.opciones.de-codigo { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.op.cod { font: 700 .88rem/1.5 var(--mono); text-align: left; white-space: pre-wrap; color: var(--texto); }
+.op.cod .k { color: #1d4ed8; }
+.op.cod .f { color: #a3480b; }
 .op.ok { background: #e6f6ec; border-color: var(--bien); color: #146b3d; }
 .op.no { background: #fdecee; border-color: var(--mal); color: var(--mal); }
 .op:disabled { cursor: default; }
@@ -208,17 +232,22 @@ table.res td { padding: 5px 12px; border: 1px solid #e3e8ee; }
 }
 
 /* código sin ligaduras: que >= se vea como se escribe */
-pre.sql, code, .linea, table.datos, table.res, .chip, .op.cod, .ficha, .ranura, .fase, .cond code, .msg { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+pre.sql, code, .linea, .op.cod, table.datos, table.res, .chip, .op.cod, .ficha, .ranura, .fase, .cond code, .msg { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
 .jugador { max-width: 52vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .jugador b { display: block; overflow: hidden; text-overflow: ellipsis; }
 .logo span { white-space: nowrap; }
 .top { background: #001B47; box-shadow: 0 2px 10px rgba(0, 0, 0, .3); }
 @media (max-width: 480px) {
-  main { padding: 12px; }
-  .card { padding: 14px; }
-  table.datos { font-size: .76rem; }
-  table.datos th, table.datos td { padding: 5px 7px; }
+  main { padding: 10px 8px; }
+  .card { padding: 14px 12px; }
+  table.datos { font-size: .68rem; }
+  table.datos th, table.datos td { padding: 5px 4px; }
   .pregunta { font-size: 1.05rem; }
   .retro { grid-template-columns: 84px 1fr; gap: 10px; }
   .retro .dato, .retro .sticker { width: 84px; }
+  .gafete { padding: 10px 12px; gap: 10px; }
+  .gafete .foto { width: 46px; height: 46px; }
+  .gafete .banco span { display: none; }
+  .kpi b { font-size: 1.2rem; }
+  .avatar { width: 38px; height: 38px; font-size: .85rem; }
 }

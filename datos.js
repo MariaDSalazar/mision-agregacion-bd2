@@ -1,11 +1,151 @@
 // Generado por _fuente/construir.py: resultados reales ejecutados en SQL Server. No editar a mano.
 window.JUEGO = {
+ "banco": "Banco Quindé",
+ "personas": {
+  "lucia": {
+   "nombre": "Lucía Andrade",
+   "cargo": "Jefa de Analítica de Datos",
+   "color": "#002C71"
+  },
+  "martin": {
+   "nombre": "Martín Vega",
+   "cargo": "Jefe de Operaciones",
+   "color": "#1E8C7E"
+  },
+  "andres": {
+   "nombre": "Andrés Paredes",
+   "cargo": "Canales Digitales",
+   "color": "#6B4FBB"
+  },
+  "gabriela": {
+   "nombre": "Gabriela Ríos",
+   "cargo": "Tesorería",
+   "color": "#B07F00"
+  },
+  "paola": {
+   "nombre": "Paola Cruz",
+   "cargo": "Auditoría Interna",
+   "color": "#4A5461"
+  },
+  "valeria": {
+   "nombre": "Valeria Mena",
+   "cargo": "Gerente Comercial",
+   "color": "#910048"
+  },
+  "kevin": {
+   "nombre": "Kevin Aguirre",
+   "cargo": "Pasante de Analítica",
+   "color": "#0B7FAE"
+  },
+  "diego": {
+   "nombre": "Diego Salinas",
+   "cargo": "Riesgo Operativo",
+   "color": "#C62839"
+  }
+ },
  "tablas": {
-  "Pedidos": {
-   "caso": "App de delivery",
+  "Transferencias": {
+   "caso": "Core bancario · transferencias del domingo",
    "cols": [
     [
-     "PedidoID",
+     "TxID",
+     "int"
+    ],
+    [
+     "Referencia",
+     "txt"
+    ],
+    [
+     "Cliente",
+     "txt"
+    ],
+    [
+     "Monto",
+     "dec"
+    ],
+    [
+     "Estado",
+     "txt"
+    ]
+   ],
+   "filas": [
+    [
+     5001,
+     "TRF-0412",
+     "Ana Ruiz",
+     120.0,
+     "APROBADA"
+    ],
+    [
+     5002,
+     "TRF-0413",
+     "Jorge Lema",
+     45.5,
+     "APROBADA"
+    ],
+    [
+     5004,
+     "TRF-0414",
+     "Ana Ruiz",
+     300.0,
+     "RECHAZADA"
+    ],
+    [
+     5005,
+     "TRF-0415",
+     "Carla Vélez",
+     80.0,
+     "APROBADA"
+    ],
+    [
+     5006,
+     "TRF-0415",
+     "Carla Vélez",
+     80.0,
+     "APROBADA"
+    ],
+    [
+     5008,
+     "TRF-0416",
+     "Luis Mora",
+     1500.0,
+     "APROBADA"
+    ],
+    [
+     5009,
+     "TRF-0417",
+     "Pedro Ibarra",
+     60.0,
+     "RECHAZADA"
+    ],
+    [
+     5010,
+     "TRF-0418",
+     "Sofía Pinto",
+     25.0,
+     "APROBADA"
+    ],
+    [
+     5012,
+     "TRF-0419",
+     "Luis Mora",
+     210.0,
+     "APROBADA"
+    ],
+    [
+     5013,
+     "TRF-0420",
+     "Diana Cano",
+     95.0,
+     "APROBADA"
+    ]
+   ]
+  },
+  "Depositos": {
+   "caso": "Agencia Centro · depósitos en ventanilla del lunes",
+   "cols": [
+    [
+     "DepositoID",
      "int"
     ],
     [
@@ -13,1135 +153,1137 @@ window.JUEGO = {
      "txt"
     ],
     [
-     "Restaurante",
+     "Monto",
+     "dec"
+    ],
+    [
+     "Comision",
+     "dec"
+    ],
+    [
+     "Estado",
      "txt"
-    ],
-    [
-     "Total",
-     "dec"
-    ],
-    [
-     "Propina",
-     "dec"
     ]
    ],
    "filas": [
     [
-     1,
-     "Ana",
-     "PizzaRápida",
-     18.5,
-     2.0
+     701,
+     "Ana Ruiz",
+     250.0,
+     0.5,
+     "ACREDITADO"
     ],
     [
-     2,
-     "Luis",
-     "BurgerLab",
-     12.0,
-     null
+     702,
+     "Marco Paz",
+     1200.0,
+     0.0,
+     "ACREDITADO"
     ],
     [
-     3,
-     "Ana",
-     "SushiGo",
-     25.0,
-     3.0
+     703,
+     "Elena Soto",
+     80.0,
+     null,
+     "ACREDITADO"
     ],
     [
-     4,
-     "Carla",
-     "PizzaRápida",
-     22.0,
-     null
+     704,
+     "Luis Mora",
+     500.0,
+     1.0,
+     "ACREDITADO"
     ],
     [
-     5,
-     "Diego",
-     "BurgerLab",
-     9.5,
-     1.0
+     705,
+     "Rita Gómez",
+     650.0,
+     0.5,
+     "DEVUELTO"
     ],
     [
-     6,
-     "Luis",
-     "PizzaRápida",
-     15.0,
-     2.0
+     706,
+     "Pablo Ortiz",
+     40.0,
+     null,
+     "ACREDITADO"
     ],
     [
-     7,
-     "Sofía",
-     "SushiGo",
-     30.0,
-     null
+     707,
+     "Marco Paz",
+     300.0,
+     0.0,
+     "ACREDITADO"
     ],
     [
-     8,
-     "Diego",
-     "TacoLoco",
-     11.0,
-     1.5
+     708,
+     "Elena Soto",
+     180.0,
+     1.0,
+     "ACREDITADO"
     ]
    ]
   },
-  "Actividad": {
-   "caso": "Reloj inteligente",
+  "RetirosATM": {
+   "caso": "Red de cajeros automáticos · retiros del martes",
    "cols": [
     [
-     "Dia",
+     "RetiroID",
+     "int"
+    ],
+    [
+     "Cajero",
      "txt"
     ],
     [
-     "Pasos",
-     "int"
-    ],
-    [
-     "Calorias",
-     "int"
-    ],
-    [
-     "MinutosEjercicio",
-     "int"
-    ]
-   ],
-   "filas": [
-    [
-     "Lunes",
-     8000,
-     320,
-     30
-    ],
-    [
-     "Martes",
-     6500,
-     260,
-     null
-    ],
-    [
-     "Miércoles",
-     10000,
-     410,
-     45
-    ],
-    [
-     "Jueves",
-     7500,
-     300,
-     20
-    ],
-    [
-     "Viernes",
-     12000,
-     480,
-     60
-    ],
-    [
-     "Sábado",
-     4000,
-     170,
-     null
-    ],
-    [
-     "Domingo",
-     8000,
-     320,
-     25
-    ]
-   ]
-  },
-  "Canciones": {
-   "caso": "App de música",
-   "cols": [
-    [
-     "Cancion",
-     "txt"
-    ],
-    [
-     "Artista",
-     "txt"
-    ],
-    [
-     "Genero",
-     "txt"
-    ],
-    [
-     "DuracionSeg",
-     "int"
-    ],
-    [
-     "Reproducciones",
-     "int"
-    ],
-    [
-     "Estreno",
+     "FechaHora",
      "fecha"
-    ]
-   ],
-   "filas": [
-    [
-     "Ritmo Andino",
-     "Los Páramos",
-     "Pop",
-     210,
-     1200,
-     "2023-05-10"
     ],
     [
-     "Noche en Guayaquil",
-     "DJ Malecón",
-     "Electrónica",
-     185,
-     3400,
-     "2024-01-20"
-    ],
-    [
-     "Volcán",
-     "Cotopaxi Band",
-     "Rock",
-     245,
-     800,
-     "2022-11-03"
-    ],
-    [
-     "Mar de Manta",
-     "Brisa",
-     "Pop",
-     198,
-     2500,
-     "2024-03-15"
-    ],
-    [
-     "Código Binario",
-     "Byte Crew",
-     "Electrónica",
-     302,
-     950,
-     "2021-08-30"
-    ],
-    [
-     "Galápagos",
-     "Brisa",
-     "Pop",
-     176,
-     4100,
-     "2024-06-01"
-    ],
-    [
-     "Lluvia de Cuenca",
-     "Los Páramos",
-     "Rock",
-     230,
-     1500,
-     "2023-09-12"
-    ],
-    [
-     "Pasillo Digital",
-     "Byte Crew",
-     "Electrónica",
-     264,
-     600,
-     "2022-02-14"
-    ]
-   ]
-  },
-  "Viajes": {
-   "caso": "App de transporte",
-   "cols": [
-    [
-     "ViajeID",
-     "int"
-    ],
-    [
-     "Conductor",
-     "txt"
-    ],
-    [
-     "Ciudad",
-     "txt"
-    ],
-    [
-     "Tarifa",
-     "dec"
-    ],
-    [
-     "Km",
-     "int"
-    ]
-   ],
-   "filas": [
-    [
-     1,
-     "Pedro",
-     "Quito",
-     4.5,
-     5
-    ],
-    [
-     2,
-     "María",
-     "Quito",
-     6.0,
-     8
-    ],
-    [
-     3,
-     "Pedro",
-     "Guayaquil",
-     3.5,
-     4
-    ],
-    [
-     4,
-     "Jorge",
-     "Cuenca",
-     5.0,
-     6
-    ],
-    [
-     5,
-     "María",
-     "Quito",
-     7.5,
-     10
-    ],
-    [
-     6,
-     "Jorge",
-     "Cuenca",
-     4.0,
-     5
-    ],
-    [
-     7,
-     "Pedro",
-     "Quito",
-     5.5,
-     7
-    ],
-    [
-     8,
-     "María",
-     "Guayaquil",
-     6.5,
-     9
-    ],
-    [
-     9,
-     "Jorge",
-     "Quito",
-     3.0,
-     3
-    ],
-    [
-     10,
-     "Pedro",
-     "Guayaquil",
-     4.0,
-     4
-    ]
-   ]
-  },
-  "Tickets": {
-   "caso": "Soporte técnico",
-   "cols": [
-    [
-     "TicketID",
-     "int"
-    ],
-    [
-     "Tecnico",
-     "txt"
-    ],
-    [
-     "Prioridad",
-     "txt"
-    ],
-    [
-     "Horas",
-     "int"
-    ]
-   ],
-   "filas": [
-    [
-     1,
-     "Ana",
-     "Alta",
-     3
-    ],
-    [
-     2,
-     "Bruno",
-     "Baja",
-     1
-    ],
-    [
-     3,
-     "Ana",
-     "Media",
-     2
-    ],
-    [
-     4,
-     "Carlos",
-     "Alta",
-     5
-    ],
-    [
-     5,
-     "Ana",
-     "Baja",
-     1
-    ],
-    [
-     6,
-     "Bruno",
-     "Alta",
-     4
-    ],
-    [
-     7,
-     "Carlos",
-     "Media",
-     2
-    ],
-    [
-     8,
-     "Ana",
-     "Alta",
-     4
-    ],
-    [
-     9,
-     "Bruno",
-     "Media",
-     3
-    ],
-    [
-     10,
-     "Carlos",
-     "Alta",
-     6
-    ]
-   ]
-  },
-  "Ventas": {
-   "caso": "Tienda de tecnología",
-   "cols": [
-    [
-     "VentaID",
-     "int"
-    ],
-    [
-     "Producto",
-     "txt"
-    ],
-    [
-     "Categoria",
-     "txt"
-    ],
-    [
-     "Cantidad",
-     "int"
-    ],
-    [
-     "Precio",
+     "Monto",
      "dec"
     ]
    ],
    "filas": [
     [
-     1,
-     "Laptop IdeaPad 3",
-     "Laptops",
-     2,
-     650.0
+     9101,
+     "ATM-CENTRO",
+     "2026-10-06 06:42",
+     40.0
     ],
     [
-     2,
-     "Laptop VivoBook 15",
-     "Laptops",
-     1,
-     700.0
+     9102,
+     "ATM-NORTE",
+     "2026-10-06 07:15",
+     100.0
     ],
     [
-     3,
-     "MacBook Air M2",
-     "Laptops",
-     1,
-     1200.0
+     9103,
+     "ATM-CENTRO",
+     "2026-10-06 09:30",
+     0.0
     ],
     [
-     4,
-     "Galaxy A54",
-     "Celulares",
-     3,
-     380.0
-    ],
-    [
-     5,
-     "iPhone 15",
-     "Celulares",
-     2,
-     950.0
-    ],
-    [
-     6,
-     "Redmi Note 13",
-     "Celulares",
-     4,
-     250.0
-    ],
-    [
-     7,
-     "Mouse inalámbrico",
-     "Accesorios",
-     10,
-     15.0
-    ],
-    [
-     8,
-     "Teclado mecánico",
-     "Accesorios",
-     5,
-     45.0
-    ],
-    [
-     9,
-     "Audífonos Bluetooth",
-     "Accesorios",
-     6,
+     9104,
+     "ATM-SUR",
+     "1900-01-01 00:00",
      60.0
     ],
     [
-     10,
-     "Disco SSD 1 TB",
-     "Accesorios",
-     4,
+     9105,
+     "ATM-CENTRO",
+     "2026-10-06 12:05",
+     480.0
+    ],
+    [
+     9106,
+     "ATM-NORTE",
+     "2026-10-06 13:40",
+     20.0
+    ],
+    [
+     9107,
+     "ATM-CENTRO",
+     "2026-10-06 18:22",
+     200.0
+    ],
+    [
+     9108,
+     "ATM-SUR",
+     "2026-10-06 21:10",
      80.0
     ],
     [
-     11,
-     "Monitor 24 pulgadas",
-     "Monitores",
+     9109,
+     "ATM-NORTE",
+     "2026-10-06 22:51",
+     300.0
+    ]
+   ]
+  },
+  "PagosServicios": {
+   "caso": "Agencias · pagos de servicios básicos del miércoles",
+   "cols": [
+    [
+     "PagoID",
+     "int"
+    ],
+    [
+     "Agencia",
+     "txt"
+    ],
+    [
+     "Servicio",
+     "txt"
+    ],
+    [
+     "Monto",
+     "dec"
+    ]
+   ],
+   "filas": [
+    [
+     301,
+     "Centro",
+     "Luz",
+     45.0
+    ],
+    [
+     302,
+     "Norte",
+     "Agua",
+     18.5
+    ],
+    [
+     303,
+     "Centro",
+     "Internet",
+     30.0
+    ],
+    [
+     304,
+     "Sur",
+     "Luz",
+     52.0
+    ],
+    [
+     305,
+     "Norte",
+     "Luz",
+     61.0
+    ],
+    [
+     306,
+     "Centro",
+     "Agua",
+     22.0
+    ],
+    [
+     307,
+     "Nrte",
+     "Internet",
+     35.0
+    ],
+    [
+     308,
+     "Sur",
+     "Agua",
+     15.0
+    ],
+    [
+     309,
+     "Norte",
+     "Internet",
+     40.0
+    ],
+    [
+     310,
+     "Centro",
+     "Luz",
+     38.0
+    ]
+   ]
+  },
+  "PagosTarjeta": {
+   "caso": "Comercios afiliados · pagos con tarjeta de débito del jueves",
+   "cols": [
+    [
+     "PagoID",
+     "int"
+    ],
+    [
+     "Referencia",
+     "txt"
+    ],
+    [
+     "Comercio",
+     "txt"
+    ],
+    [
+     "Monto",
+     "dec"
+    ],
+    [
+     "Estado",
+     "txt"
+    ]
+   ],
+   "filas": [
+    [
+     801,
+     "POS-1001",
+     "Farmacia Sol",
+     12.4,
+     "APROBADO"
+    ],
+    [
+     802,
+     "POS-1002",
+     "Café Andino",
+     4.5,
+     "RECHAZADO"
+    ],
+    [
+     803,
+     "POS-1003",
+     "Café Andino",
+     4.5,
+     "APROBADO"
+    ],
+    [
+     804,
+     "POS-1004",
+     "Ferretería Ruiz",
+     85.0,
+     "APROBADO"
+    ],
+    [
+     805,
+     "POS-1005",
+     "Café Andino",
+     9.0,
+     "RECHAZADO"
+    ],
+    [
+     806,
+     "POS-1006",
+     "Farmacia Sol",
+     23.1,
+     "APROBADO"
+    ],
+    [
+     807,
+     "POS-1006",
+     "Farmacia Sol",
+     23.1,
+     "APROBADO"
+    ],
+    [
+     808,
+     "POS-1007",
+     "Ferretería Ruiz",
+     140.0,
+     "RECHAZADO"
+    ],
+    [
+     809,
+     "POS-1008",
+     "Café Andino",
+     6.75,
+     "RECHAZADO"
+    ],
+    [
+     810,
+     "POS-1009",
+     "Farmacia Sol",
+     8.9,
+     "APROBADO"
+    ],
+    [
+     811,
+     "POS-1010",
+     "Ferretería Ruiz",
+     62.0,
+     "APROBADO"
+    ]
+   ]
+  },
+  "Transacciones": {
+   "caso": "Cierre de mes · muestra de transacciones por canal",
+   "cols": [
+    [
+     "TxID",
+     "int"
+    ],
+    [
+     "Canal",
+     "txt"
+    ],
+    [
+     "Monto",
+     "dec"
+    ],
+    [
+     "Estado",
+     "txt"
+    ]
+   ],
+   "filas": [
+    [
+     1,
+     "App",
+     120.0,
+     "APROBADA"
+    ],
+    [
+     2,
+     "Ventanilla",
+     850.0,
+     "APROBADA"
+    ],
+    [
      3,
-     180.0
+     "App",
+     60.0,
+     "APROBADA"
+    ],
+    [
+     4,
+     "Web",
+     300.0,
+     "RECHAZADA"
+    ],
+    [
+     5,
+     "Cajero",
+     200.0,
+     "APROBADA"
+    ],
+    [
+     6,
+     "App",
+     95.0,
+     "RECHAZADA"
+    ],
+    [
+     7,
+     "Ventanilla",
+     400.0,
+     "APROBADA"
+    ],
+    [
+     8,
+     "Web",
+     150.0,
+     "APROBADA"
+    ],
+    [
+     9,
+     "App",
+     45.0,
+     "APROBADA"
+    ],
+    [
+     10,
+     "Cajero",
+     100.0,
+     "APROBADA"
+    ],
+    [
+     11,
+     "Web",
+     75.0,
+     "APROBADA"
     ],
     [
      12,
-     "Monitor 27 pulgadas",
-     "Monitores",
-     1,
-     290.0
+     "App",
+     230.0,
+     "APROBADA"
     ]
    ]
   }
  },
  "niveles": [
   {
-   "titulo": "Contar",
+   "dia": "Lunes",
+   "area": "Operaciones",
    "clave": "COUNT",
-   "icono": "contar",
-   "tabla": "Pedidos",
-   "intro": "COUNT responde «¿cuántos?». COUNT(*) cuenta filas; COUNT(columna) cuenta solo las que tienen valor.",
-   "contexto": "Trabajas en una app de delivery. Cada fila es un pedido de hoy. Si el cliente no dejó propina, la celda está vacía (NULL).",
+   "icono": "operaciones",
+   "tabla": "Transferencias",
+   "hora": "08:00",
+   "intro": "¡Te damos la bienvenida al equipo! Hoy apoyas a Operaciones. Para responder «¿cuántos?» se usa COUNT: COUNT(*) cuenta filas y COUNT(DISTINCT columna) cuenta valores sin repetir.",
+   "contexto": "Cada madrugada el core bancario copia las transferencias del día anterior en la tabla Transferencias. Anoche el proceso falló a la mitad y se volvió a ejecutar (reproceso).",
    "retos": [
     {
-     "tipo": "funcion",
-     "pregunta": "La gerente quiere saber cuántos pedidos recibió la app hoy. ¿Qué función usas?",
+     "tipo": "opcion",
+     "de": "martin",
+     "hora": "08:20",
+     "cod": true,
+     "pregunta": "Buenos días. El proceso de anoche no dejó su registro de control y necesito saber cuántas filas cargó en la tabla Transferencias. ¿Qué consulta usas?",
      "opciones": [
-      "COUNT",
-      "SUM",
-      "AVG",
-      "MAX"
+      "SELECT COUNT(*)\nFROM Transferencias;",
+      "SELECT MAX(TxID)\nFROM Transferencias;",
+      "SELECT COUNT(DISTINCT Cliente)\nFROM Transferencias;",
+      "SELECT SUM(Monto)\nFROM Transferencias;"
      ],
      "correcta": 0,
      "porque": [
       "",
-      "SUM suma valores, como el dinero; no cuenta pedidos.",
-      "AVG calcula un promedio, no cuántos hay.",
-      "MAX da el valor más alto, no la cantidad."
+      "MAX(TxID) da 5013: el último número asignado, no la cantidad. Los ID tienen saltos (no existen 5003, 5007 ni 5011) porque SQL Server no reutiliza el número de una operación que falló.",
+      "Esa consulta cuenta clientes distintos (7), no filas.",
+      "SUM suma el dinero de las transferencias; no cuenta filas."
      ],
-     "sql": "SELECT COUNT(*) AS Pedidos\nFROM   Pedidos;",
-     "explica": "Cada fila es un pedido: COUNT(*) cuenta las filas y da 8.",
+     "sql": "SELECT COUNT(*) AS Filas\nFROM   Transferencias;",
+     "explica": "COUNT(*) cuenta las filas de la tabla, sin importar sus valores: el proceso cargó 10 filas.",
      "fases": {
       "agg": "COUNT",
       "col": "*"
      },
+     "gracias": "Perfecto: 10 filas. Lo anoto en la bitácora del proceso.",
      "resultado": {
       "cols": [
-       "Pedidos"
+       "Filas"
       ],
       "filas": [
        [
-        "8"
+        "10"
        ]
       ]
      }
     },
     {
      "tipo": "opcion",
-     "pregunta": "¿Cuántos pedidos dejaron propina?",
+     "de": "martin",
+     "hora": "09:05",
+     "pregunta": "El sistema de pagos reporta 9 transferencias recibidas el domingo, pero tu conteo dio 10. Antes de abrir un incidente: ¿cuántas transferencias reales hubo?",
      "opciones": [
+      "9",
+      "10",
       "8",
-      "5",
-      "3",
       "13"
      ],
-     "correcta": 1,
+     "correcta": 0,
      "porque": [
-      "8 sería COUNT(*): cuenta todas las filas, también las vacías.",
       "",
-      "3 son los pedidos SIN propina (los NULL).",
-      "No se suman montos: se cuentan las celdas con valor."
+      "10 son filas, no transferencias: la TRF-0415 aparece dos veces (TxID 5005 y 5006) con el mismo cliente y el mismo monto. Es una sola transferencia cargada dos veces por el reproceso.",
+      "8 son las filas APROBADAS (con el duplicado incluido); el sistema de pagos reporta todas, aprobadas y rechazadas.",
+      "13 sale de restar los ID (5013 − 5001 + 1), pero los ID tienen saltos."
      ],
-     "sql": "SELECT COUNT(Propina) AS ConPropina\nFROM   Pedidos;",
-     "explica": "COUNT(Propina) se salta las celdas vacías (NULL): de 8 pedidos, 5 tienen propina.",
+     "sql": "SELECT COUNT(DISTINCT Referencia) AS Transferencias\nFROM   Transferencias;",
+     "explica": "Cada transferencia tiene una referencia única. COUNT(DISTINCT Referencia) cuenta cada referencia una sola vez: 9. La fila 5006 es un duplicado del reproceso y se reporta a Operaciones para anularla.",
      "fases": {
-      "agg": "COUNT",
-      "col": "Propina"
+      "agg": "COUNT DISTINCT",
+      "col": "Referencia"
      },
+     "gracias": "¡Bien visto! Era el reproceso. Ya pedí que anulen la fila duplicada.",
      "resultado": {
       "cols": [
-       "ConPropina"
+       "Transferencias"
       ],
       "filas": [
        [
-        "5"
+        "9"
        ]
       ]
      }
     },
     {
      "tipo": "opcion",
-     "pregunta": "¿En cuántos restaurantes diferentes se hicieron pedidos?",
+     "de": "andres",
+     "hora": "10:30",
+     "pregunta": "Hola, soy de Canales Digitales. Para el informe de incidencias de la app necesito saber cuántas transferencias fueron rechazadas el domingo.",
      "opciones": [
+      "2",
       "8",
-      "4",
-      "3",
-      "5"
+      "1",
+      "10"
      ],
-     "correcta": 1,
+     "correcta": 0,
      "porque": [
-      "8 son los pedidos; DISTINCT cuenta cada restaurante una sola vez.",
       "",
-      "Falta uno: PizzaRápida, BurgerLab, SushiGo y TacoLoco.",
-      "Hay solo 4 nombres distintos de restaurante."
+      "8 son las aprobadas, no las rechazadas.",
+      "Hay dos: la TRF-0414 de Ana Ruiz y la TRF-0417 de Pedro Ibarra.",
+      "10 son todas las filas; WHERE deja solo las rechazadas."
      ],
-     "sql": "SELECT COUNT(DISTINCT Restaurante) AS Restaurantes\nFROM   Pedidos;",
-     "explica": "COUNT(DISTINCT Restaurante) cuenta cada restaurante una vez: PizzaRápida, BurgerLab, SushiGo y TacoLoco.",
+     "sql": "SELECT COUNT(*) AS Rechazadas\nFROM   Transferencias\nWHERE  Estado = 'RECHAZADA';",
+     "explica": "WHERE deja solo las filas con Estado = 'RECHAZADA' y COUNT(*) las cuenta: 2.",
      "fases": {
-      "agg": "COUNT DISTINCT",
-      "col": "Restaurante"
+      "agg": "COUNT",
+      "col": "*",
+      "where": [
+       "Estado",
+       "=",
+       "RECHAZADA"
+      ]
      },
+     "gracias": "Gracias, con eso cierro el informe de incidencias.",
      "resultado": {
       "cols": [
-       "Restaurantes"
+       "Rechazadas"
       ],
       "filas": [
        [
+        "2"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "lucia",
+     "hora": "11:40",
+     "pregunta": "Mercadeo hará una encuesta de satisfacción a los clientes a quienes SÍ les funcionó una transferencia el domingo. ¿A cuántos clientes distintos hay que escribirles?",
+     "opciones": [
+      "6",
+      "8",
+      "7",
+      "9"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "8 son transferencias aprobadas (con el duplicado); Carla Vélez y Luis Mora aparecen dos veces.",
+      "7 incluye a Pedro Ibarra, cuya única transferencia fue rechazada.",
+      "9 son las referencias distintas, no los clientes."
+     ],
+     "sql": "SELECT COUNT(DISTINCT Cliente) AS Clientes\nFROM   Transferencias\nWHERE  Estado = 'APROBADA';",
+     "explica": "WHERE deja las 8 filas aprobadas y COUNT(DISTINCT Cliente) cuenta a cada cliente una vez: Carla Vélez y Luis Mora aparecen dos veces, pero cuentan una. Resultado: 6.",
+     "fases": {
+      "agg": "COUNT DISTINCT",
+      "col": "Cliente",
+      "where": [
+       "Estado",
+       "=",
+       "APROBADA"
+      ]
+     },
+     "gracias": "Listo, se lo paso a Mercadeo. ¡Buen primer día!",
+     "resultado": {
+      "cols": [
+       "Clientes"
+      ],
+      "filas": [
+       [
+        "6"
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "dia": "Martes",
+   "area": "Tesorería",
+   "clave": "SUM · AVG",
+   "icono": "tesoreria",
+   "tabla": "Depositos",
+   "hora": "08:00",
+   "intro": "Hoy apoyas a Tesorería con el cuadre de caja. SUM da el total de una columna y AVG el promedio. Las celdas vacías (NULL) no entran en ninguno de los dos, y un NULL no es un cero.",
+   "contexto": "Depósitos en ventanilla de la agencia Centro. Comision vacía (NULL) = el proceso nocturno todavía no la calcula; 0.00 = cliente exento. DEVUELTO = cheque que el banco del cliente no pagó.",
+   "retos": [
+    {
+     "tipo": "opcion",
+     "de": "gabriela",
+     "hora": "08:30",
+     "pregunta": "Buenos días. Para empezar el cuadre, dame el total de TODOS los depósitos que registró el sistema ayer en la agencia Centro.",
+     "opciones": [
+      "3200.00",
+      "2550.00",
+      "400.00",
+      "8"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "Ese es el total sin el cheque devuelto; por ahora te pidió todo lo que registró el sistema.",
+      "400.00 es el promedio (AVG), no el total.",
+      "8 es la cantidad de depósitos (COUNT), no el dinero."
+     ],
+     "sql": "SELECT SUM(Monto) AS TotalRegistrado\nFROM   Depositos;",
+     "explica": "SUM junta los montos de las 8 filas: 3200.00.",
+     "fases": {
+      "agg": "SUM",
+      "col": "Monto"
+     },
+     "gracias": "Gracias. Ahora lo comparo con lo que contó la bóveda.",
+     "resultado": {
+      "cols": [
+       "TotalRegistrado"
+      ],
+      "filas": [
+       [
+        "3200.00"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "gabriela",
+     "hora": "09:15",
+     "pregunta": "La bóveda contó 2550.00 en efectivo y cheques: faltan 650.00 frente a tu total. Antes de reportar un faltante, ¿qué pasó?",
+     "opciones": [
+      "El depósito 705 es un cheque DEVUELTO: quedó registrado, pero ese dinero nunca entró",
+      "Hay un faltante real en la bóveda y hay que reportarlo",
+      "SUM se equivocó porque hay comisiones vacías (NULL)",
+      "Los depósitos de Marco Paz están duplicados"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "Los datos lo explican: el depósito 705 (650.00) es un cheque devuelto, por eso ese dinero no está en la bóveda. Revisa los datos antes de reportar.",
+      "SUM(Monto) no usa la columna Comision: sus NULL no cambian este total.",
+      "Marco Paz hizo dos depósitos distintos (702 y 707) por montos diferentes: no es un duplicado."
+     ],
+     "sql": "SELECT SUM(Monto) AS TotalAcreditado\nFROM   Depositos\nWHERE  Estado = 'ACREDITADO';",
+     "explica": "Un cheque devuelto queda registrado, pero no entra dinero. Con WHERE Estado = 'ACREDITADO' la suma da 2550.00: exactamente lo que contó la bóveda.",
+     "fases": {
+      "agg": "SUM",
+      "col": "Monto",
+      "where": [
+       "Estado",
+       "=",
+       "ACREDITADO"
+      ]
+     },
+     "gracias": "¡Cuadra al centavo! Casi reporto un faltante que no existía.",
+     "resultado": {
+      "cols": [
+       "TotalAcreditado"
+      ],
+      "filas": [
+       [
+        "2550.00"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "paola",
+     "hora": "11:00",
+     "pregunta": "Auditoría necesita la comisión promedio de los depósitos de ayer. Recuerda: Comision vacía = todavía no calculada; 0.00 = cliente exento.",
+     "opciones": [
+      "0.50",
+      "0.38",
+      "0.75",
+      "3.00"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "0.38 = 3.00 ÷ 8: tratarías los NULL como si fueran 0. AVG no los cuenta: divide para las 6 comisiones que existen.",
+      "0.75 = 3.00 ÷ 4: dejaste fuera los 0.00. Un cliente exento sí tiene comisión: es cero, no vacía.",
+      "3.00 es la suma de las comisiones (SUM), no el promedio."
+     ],
+     "sql": "SELECT AVG(Comision) AS ComisionPromedio\nFROM   Depositos;",
+     "explica": "AVG suma las 6 comisiones con valor (3.00) y divide para 6: 0.50. Los 2 NULL no entran; los 0.00 sí, porque cero es un valor. SQL Server lo muestra como 0.500000.",
+     "fases": {
+      "agg": "AVG",
+      "col": "Comision"
+     },
+     "gracias": "Correcto. Dejo anotado que hay 2 comisiones pendientes de cálculo.",
+     "resultado": {
+      "cols": [
+       "ComisionPromedio"
+      ],
+      "filas": [
+       [
+        "0.500000"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "gabriela",
+     "hora": "12:30",
+     "pregunta": "Para el informe de la agencia: ¿cuál fue el depósito promedio, contando solo los que sí se acreditaron?",
+     "opciones": [
+      "364.29",
+      "400.00",
+      "510.00",
+      "2550.00"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "400.00 = 3200.00 ÷ 8: incluye el cheque devuelto.",
+      "510.00 = 2550.00 ÷ 5 clientes; AVG divide para los 7 depósitos, no para los clientes.",
+      "2550.00 es el total acreditado (SUM), no el promedio."
+     ],
+     "sql": "SELECT AVG(Monto) AS DepositoPromedio\nFROM   Depositos\nWHERE  Estado = 'ACREDITADO';",
+     "explica": "WHERE deja los 7 depósitos acreditados; AVG suma 2550.00 y divide para 7: 364.29 (SQL Server muestra 364.285714).",
+     "fases": {
+      "agg": "AVG",
+      "col": "Monto",
+      "where": [
+       "Estado",
+       "=",
+       "ACREDITADO"
+      ]
+     },
+     "gracias": "Perfecto, va al informe de la agencia.",
+     "resultado": {
+      "cols": [
+       "DepositoPromedio"
+      ],
+      "filas": [
+       [
+        "364.285714"
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "dia": "Miércoles",
+   "area": "Canales Digitales",
+   "clave": "MIN · MAX",
+   "icono": "cajero",
+   "tabla": "RetirosATM",
+   "hora": "08:00",
+   "intro": "Hoy trabajas con la red de cajeros automáticos. MIN da el valor más bajo y MAX el más alto: con números, fechas y texto. Ojo: un solo dato mal registrado cambia su resultado.",
+   "contexto": "Cada cajero (ATM) envía sus retiros con fecha y hora. Algunos registros llegan con problemas: revisa bien la tabla antes de responder.",
+   "retos": [
+    {
+     "tipo": "opcion",
+     "de": "andres",
+     "hora": "08:10",
+     "pregunta": "Riesgos fijó un tope de 500.00 por retiro en cajero. ¿Cuál fue el retiro más alto de ayer? Así sabemos si alguno pasó el tope.",
+     "opciones": [
+      "480.00",
+      "300.00",
+      "1280.00",
+      "500.00"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "300.00 es el más alto del ATM-NORTE; hay uno mayor en ATM-CENTRO.",
+      "1280.00 es la suma de todos los retiros (SUM).",
+      "500.00 es el tope, no un dato de la tabla."
+     ],
+     "sql": "SELECT MAX(Monto) AS RetiroMasAlto\nFROM   RetirosATM;",
+     "explica": "MAX recorre la columna Monto y se queda con el mayor: 480.00 (retiro 9105). Ninguno pasó el tope.",
+     "fases": {
+      "agg": "MAX",
+      "col": "Monto"
+     },
+     "gracias": "Excelente, ningún retiro pasó el tope.",
+     "resultado": {
+      "cols": [
+       "RetiroMasAlto"
+      ],
+      "filas": [
+       [
+        "480.00"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "andres",
+     "hora": "09:40",
+     "pregunta": "El tablero de cajeros dice que el retiro más bajo de ayer fue de 0.00. Eso no tiene sentido. ¿Qué cifra debería mostrar?",
+     "opciones": [
+      "20.00",
+      "0.00",
+      "40.00",
+      "480.00"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "Un retiro de 0.00 no existe: la fila 9103 es una consulta de saldo que el cajero registró como retiro. Hay que excluirla.",
+      "Hay uno menor: 20.00 en el ATM-NORTE (retiro 9106).",
+      "480.00 es el más alto (MAX)."
+     ],
+     "sql": "SELECT MIN(Monto) AS RetiroMinimo\nFROM   RetirosATM\nWHERE  Monto > 0;",
+     "explica": "WHERE Monto > 0 descarta la consulta de saldo mal registrada y MIN da 20.00. El registro 9103 se reporta para que corrijan el cajero.",
+     "fases": {
+      "agg": "MIN",
+      "col": "Monto",
+      "where": [
+       "Monto",
+       ">",
+       0
+      ]
+     },
+     "gracias": "Tienes razón, era una consulta de saldo. Lo reporto al proveedor de cajeros.",
+     "resultado": {
+      "cols": [
+       "RetiroMinimo"
+      ],
+      "filas": [
+       [
+        "20.00"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "andres",
+     "hora": "11:20",
+     "pregunta": "Para programar la recarga de efectivo necesito saber a qué hora fue el primer retiro de ayer (6 de octubre).",
+     "opciones": [
+      "06:42",
+      "1900-01-01 00:00",
+      "07:15",
+      "22:51"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "1900-01-01 es una fecha por defecto: el ATM-SUR perdió la hora y grabó ese valor en el retiro 9104. MIN lo elige porque es la fecha más antigua.",
+      "Hay uno antes: 06:42 en el ATM-CENTRO.",
+      "22:51 es el último retiro (MAX)."
+     ],
+     "sql": "SELECT MIN(FechaHora) AS PrimerRetiro\nFROM   RetirosATM\nWHERE  FechaHora >= '2026-10-06';",
+     "explica": "WHERE deja solo los retiros desde el 6 de octubre y descarta la fecha basura de 1900. MIN da el más temprano: 06:42.",
+     "fases": {
+      "agg": "MIN",
+      "col": "FechaHora",
+      "where": [
+       "FechaHora",
+       ">=",
+       "2026-10-06"
+      ]
+     },
+     "gracias": "Perfecto, la recarga sale a las 06:00. Y aviso que el ATM-SUR tiene la hora desconfigurada.",
+     "resultado": {
+      "cols": [
+       "PrimerRetiro"
+      ],
+      "filas": [
+       [
+        "2026-10-06 06:42:00"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "kevin",
+     "hora": "15:00",
+     "muestra_sql": true,
+     "pregunta": "Hola, soy Kevin, el pasante. Para saber qué cajero tuvo más retiros escribí esta consulta. ¿Qué me va a devolver?",
+     "opciones": [
+      "ATM-SUR",
+      "ATM-CENTRO",
+      "4",
+      "Un error"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "ATM-CENTRO es el que más retiros tuvo (4), pero MAX no cuenta: con texto devuelve el último en orden alfabético.",
+      "MAX no cuenta filas: devuelve un valor de la columna.",
+      "MIN y MAX sí funcionan con texto; SUM y AVG no."
+     ],
+     "sql": "SELECT MAX(Cajero) AS Cajero\nFROM   RetirosATM;",
+     "explica": "Con texto, MAX da el último en orden alfabético (CENTRO, NORTE, SUR): ATM-SUR. Para saber qué cajero tuvo más retiros hay que contar por grupo con GROUP BY: eso es mañana.",
+     "fases": {
+      "agg": "MAX",
+      "col": "Cajero"
+     },
+     "gracias": "¡Ahh, entonces MAX no servía! Gracias por avisarme antes de enviarlo.",
+     "resultado": {
+      "cols": [
+       "Cajero"
+      ],
+      "filas": [
+       [
+        "ATM-SUR"
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "dia": "Jueves",
+   "area": "Gerencia Comercial",
+   "clave": "GROUP BY",
+   "icono": "agencia",
+   "tabla": "PagosServicios",
+   "hora": "08:00",
+   "intro": "Hoy preparas reportes por agencia. GROUP BY arma un grupo por cada valor distinto de una columna y devuelve una fila por grupo. Lo que va en el SELECT sin función, va en el GROUP BY.",
+   "contexto": "Pagos de luz, agua e internet cobrados en las agencias. El banco tiene tres agencias: Centro, Norte y Sur. Una de ellas todavía registra algunos pagos a mano.",
+   "retos": [
+    {
+     "tipo": "opcion",
+     "de": "valeria",
+     "hora": "09:00",
+     "pregunta": "Para el comité de las 15:00 necesito la recaudación por agencia. Según tu reporte, ¿qué agencia recaudó más?",
+     "opciones": [
+      "Centro",
+      "Norte",
+      "Sur"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "En el reporte Norte aparece con 119.50, menos que Centro (135.00). Algo raro pasa con Norte: lo verás en el siguiente reto.",
+      "Sur es la que menos recaudó: 67.00."
+     ],
+     "sql": "SELECT Agencia, SUM(Monto) AS Recaudado\nFROM   PagosServicios\nGROUP BY Agencia\nORDER BY Recaudado DESC;",
+     "explica": "GROUP BY arma un grupo por agencia y SUM(Monto) suma cada uno. ORDER BY ... DESC pone primero al mayor: Centro con 135.00. ¿Notaste cuántas filas tiene el reporte?",
+     "fases": {
+      "agg": "SUM",
+      "col": "Monto",
+      "group": "Agencia"
+     },
+     "gracias": "Gracias. Oye… ¿por qué el reporte tiene una fila de más?",
+     "resultado": {
+      "cols": [
+       "Agencia",
+       "Recaudado"
+      ],
+      "filas": [
+       [
+        "Centro",
+        "135.00"
+       ],
+       [
+        "Norte",
+        "119.50"
+       ],
+       [
+        "Sur",
+        "67.00"
+       ],
+       [
+        "Nrte",
+        "35.00"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "valeria",
+     "hora": "10:10",
+     "muestra_sql": true,
+     "pregunta": "Tu reporte tiene 4 filas, pero el banco solo tiene 3 agencias. ¿Qué pasó?",
+     "opciones": [
+      "El pago 307 dice «Nrte»: es Norte mal digitado y GROUP BY lo toma como otra agencia",
+      "GROUP BY siempre agrega una fila con el total general",
+      "Hay una agencia nueva que nadie registró",
+      "SQL Server se equivocó al agrupar"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "GROUP BY no agrega totales: devuelve una fila por cada valor distinto de Agencia.",
+      "Revisa la tabla: «Nrte» aparece una sola vez, en el pago 307, registrado a mano.",
+      "SQL hizo lo que se le pidió: «Nrte» y «Norte» son textos distintos, entonces son grupos distintos."
+     ],
+     "sql": "SELECT Agencia, SUM(Monto) AS Recaudado\nFROM   PagosServicios\nGROUP BY Agencia\nORDER BY Recaudado DESC;",
+     "explica": "Con el nombre corregido, Norte sumaría 119.50 + 35.00 = 154.50 y quedaría PRIMERA, no Centro. Un error de digitación cambiaba la conclusión del comité: por eso los datos se limpian antes de reportar.",
+     "fases": {
+      "agg": "SUM",
+      "col": "Monto",
+      "group": "Agencia"
+     },
+     "gracias": "¡Qué bueno que lo viste antes del comité! Pido a Sistemas que corrijan el registro.",
+     "resultado": {
+      "cols": [
+       "Agencia",
+       "Recaudado"
+      ],
+      "filas": [
+       [
+        "Centro",
+        "135.00"
+       ],
+       [
+        "Norte",
+        "119.50"
+       ],
+       [
+        "Sur",
+        "67.00"
+       ],
+       [
+        "Nrte",
+        "35.00"
+       ]
+      ]
+     }
+    },
+    {
+     "tipo": "opcion",
+     "de": "valeria",
+     "hora": "11:30",
+     "pregunta": "La empresa eléctrica nos paga una comisión fija por cada pago de luz que cobramos. ¿Cuántos pagos de luz cobramos?",
+     "opciones": [
+      "4",
+      "3",
+      "196.00",
+      "10"
+     ],
+     "correcta": 0,
+     "porque": [
+      "",
+      "3 son los pagos de agua o los de internet.",
+      "196.00 es el dinero cobrado por luz (SUM); la comisión es por pago, así que se cuentan.",
+      "10 son todos los pagos, de todos los servicios."
+     ],
+     "sql": "SELECT Servicio, COUNT(*) AS Pagos\nFROM   PagosServicios\nGROUP BY Servicio;",
+     "explica": "Un grupo por servicio y COUNT(*) en cada uno: Agua 3, Internet 3 y Luz 4.",
+     "fases": {
+      "agg": "COUNT",
+      "col": "*",
+      "group": "Servicio"
+     },
+     "gracias": "Perfecto, 4 pagos de luz. Ya facturo la comisión.",
+     "resultado": {
+      "cols": [
+       "Servicio",
+       "Pagos"
+      ],
+      "filas": [
+       [
+        "Agua",
+        "3"
+       ],
+       [
+        "Internet",
+        "3"
+       ],
+       [
+        "Luz",
         "4"
        ]
       ]
      }
     },
     {
-     "tipo": "opcion",
-     "pregunta": "¿Cuántos pedidos hizo Ana?",
-     "opciones": [
-      "1",
-      "2",
-      "3",
-      "8"
-     ],
-     "correcta": 1,
-     "porque": [
-      "Ana pidió dos veces: en PizzaRápida y en SushiGo.",
-      "",
-      "Revisa la columna Cliente: Ana aparece en 2 filas.",
-      "Sin WHERE se cuentan todos; aquí solo los de Ana."
-     ],
-     "sql": "SELECT COUNT(*) AS PedidosAna\nFROM   Pedidos\nWHERE  Cliente = 'Ana';",
-     "explica": "WHERE deja solo las filas de Ana y COUNT(*) las cuenta: 2 pedidos.",
-     "fases": {
-      "agg": "COUNT",
-      "col": "*",
-      "where": [
-       "Cliente",
-       "=",
-       "Ana"
-      ]
-     },
-     "resultado": {
-      "cols": [
-       "PedidosAna"
-      ],
-      "filas": [
-       [
-        "2"
-       ]
-      ]
-     }
-    }
-   ]
-  },
-  {
-   "titulo": "Sumar y promediar",
-   "clave": "SUM · AVG",
-   "icono": "sumar",
-   "tabla": "Actividad",
-   "intro": "SUM junta todos los valores en un total. AVG los suma y divide para cuántos hay. Los vacíos (NULL) no entran.",
-   "contexto": "Tu reloj inteligente guarda la actividad de cada día. Los días sin entrenamiento, MinutosEjercicio queda vacío (NULL).",
-   "retos": [
-    {
-     "tipo": "funcion",
-     "pregunta": "¿Qué función da el total de pasos de la semana?",
-     "opciones": [
-      "SUM",
-      "COUNT",
-      "AVG",
-      "MAX"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "COUNT diría 7 días, no los pasos.",
-      "AVG da el promedio por día, no el total.",
-      "MAX da solo el día con más pasos."
-     ],
-     "sql": "SELECT SUM(Pasos) AS PasosSemana\nFROM   Actividad;",
-     "explica": "SUM junta los pasos de los 7 días: 56 000 pasos.",
-     "fases": {
-      "agg": "SUM",
-      "col": "Pasos"
-     },
-     "resultado": {
-      "cols": [
-       "PasosSemana"
-      ],
-      "filas": [
-       [
-        "56000"
-       ]
-      ]
-     }
-    },
-    {
-     "tipo": "opcion",
-     "pregunta": "¿Cuál es el promedio de pasos por día?",
-     "opciones": [
-      "8000",
-      "56000",
-      "7",
-      "12000"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "Ese es el total (SUM); el promedio lo divide para 7 días.",
-      "7 es el número de días (COUNT).",
-      "Ese es el máximo: el viernes."
-     ],
-     "sql": "SELECT AVG(Pasos) AS PromedioPasos\nFROM   Actividad;",
-     "explica": "AVG suma los pasos (56 000) y divide para 7 días: 8000.",
-     "fases": {
-      "agg": "AVG",
-      "col": "Pasos"
-     },
-     "resultado": {
-      "cols": [
-       "PromedioPasos"
-      ],
-      "filas": [
-       [
-        "8000"
-       ]
-      ]
-     }
-    },
-    {
-     "tipo": "opcion",
-     "pregunta": "¿Cuántos minutos de ejercicio hizo en toda la semana?",
-     "opciones": [
-      "180",
-      "7",
-      "36",
-      "5"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "7 son los días de la tabla, no los minutos.",
-      "36 es el promedio, no el total.",
-      "5 son los días con ejercicio: eso sería COUNT(MinutosEjercicio)."
-     ],
-     "sql": "SELECT SUM(MinutosEjercicio) AS MinutosSemana\nFROM   Actividad;",
-     "explica": "SUM junta 30 + 45 + 20 + 60 + 25 = 180. Los días vacíos no suman nada.",
-     "fases": {
-      "agg": "SUM",
-      "col": "MinutosEjercicio"
-     },
-     "resultado": {
-      "cols": [
-       "MinutosSemana"
-      ],
-      "filas": [
-       [
-        "180"
-       ]
-      ]
-     }
-    },
-    {
-     "tipo": "opcion",
-     "pregunta": "¿Cuál es el promedio de minutos de ejercicio? (martes y sábado están vacíos)",
-     "opciones": [
-      "36",
-      "25",
-      "180",
-      "30"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "180 ÷ 7 ≈ 25: AVG no divide para los días vacíos, divide para los 5 que tienen dato.",
-      "180 es el total, no el promedio.",
-      "30 es solo el lunes."
-     ],
-     "sql": "SELECT AVG(MinutosEjercicio) AS PromedioMinutos\nFROM   Actividad;",
-     "explica": "AVG divide 180 para los 5 días con dato, no para 7: un vacío no es un cero. Resultado: 36.",
-     "fases": {
-      "agg": "AVG",
-      "col": "MinutosEjercicio"
-     },
-     "resultado": {
-      "cols": [
-       "PromedioMinutos"
-      ],
-      "filas": [
-       [
-        "36"
-       ]
-      ]
-     }
-    }
-   ]
-  },
-  {
-   "titulo": "El menor y el mayor",
-   "clave": "MIN · MAX",
-   "icono": "extremos",
-   "tabla": "Canciones",
-   "intro": "MIN da el valor más bajo y MAX el más alto. Funcionan con números, fechas y también con texto (orden alfabético).",
-   "contexto": "Trabajas en una app de música. Reproducciones está en miles y la duración en segundos.",
-   "retos": [
-    {
-     "tipo": "funcion",
-     "pregunta": "¿Qué función encuentra la duración de la canción más larga?",
-     "opciones": [
-      "MAX",
-      "MIN",
-      "SUM",
-      "COUNT"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "MIN da la más corta.",
-      "SUM sumaría la duración de todas.",
-      "COUNT contaría las canciones."
-     ],
-     "sql": "SELECT MAX(DuracionSeg) AS MasLarga\nFROM   Canciones;",
-     "explica": "MAX busca el número más alto de la columna: 302 segundos (Código Binario).",
-     "fases": {
-      "agg": "MAX",
-      "col": "DuracionSeg"
-     },
-     "resultado": {
-      "cols": [
-       "MasLarga"
-      ],
-      "filas": [
-       [
-        "302"
-       ]
-      ]
-     }
-    },
-    {
-     "tipo": "opcion",
-     "pregunta": "¿Cuántas reproducciones (en miles) tiene la canción MENOS escuchada?",
-     "opciones": [
-      "600",
-      "4100",
-      "800",
-      "950"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "4100 es la MÁS escuchada (MAX).",
-      "Hay una con menos: Pasillo Digital.",
-      "Hay una con menos: Pasillo Digital."
-     ],
-     "sql": "SELECT MIN(Reproducciones) AS MenosEscuchada\nFROM   Canciones;",
-     "explica": "MIN busca el número más bajo: 600 mil reproducciones (Pasillo Digital).",
-     "fases": {
-      "agg": "MIN",
-      "col": "Reproducciones"
-     },
-     "resultado": {
-      "cols": [
-       "MenosEscuchada"
-      ],
-      "filas": [
-       [
-        "600"
-       ]
-      ]
-     }
-    },
-    {
-     "tipo": "opcion",
-     "pregunta": "¿Cuál es la fecha de estreno más antigua?",
-     "opciones": [
-      "2021-08-30",
-      "2024-06-01",
-      "2022-02-14",
-      "2023-05-10"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "Esa es la más reciente: sería MAX(Estreno).",
-      "Hay una anterior: agosto de 2021.",
-      "Hay varias anteriores a 2023."
-     ],
-     "sql": "SELECT MIN(Estreno) AS MasAntigua\nFROM   Canciones;",
-     "explica": "Con fechas, MIN da la más antigua: 30 de agosto de 2021 (Código Binario).",
-     "fases": {
-      "agg": "MIN",
-      "col": "Estreno"
-     },
-     "resultado": {
-      "cols": [
-       "MasAntigua"
-      ],
-      "filas": [
-       [
-        "2021-08-30"
-       ]
-      ]
-     }
-    },
-    {
-     "tipo": "opcion",
-     "pregunta": "Cancion es texto. ¿Qué devuelve MAX(Cancion)?",
-     "opciones": [
-      "Volcán",
-      "Código Binario",
-      "Galápagos",
-      "Un error"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "Esa es la más larga, pero aquí MAX compara letras, no segundos.",
-      "Es la más escuchada, pero MAX(Cancion) ordena por el nombre.",
-      "MIN y MAX sí funcionan con texto; SUM y AVG no."
-     ],
-     "sql": "SELECT MAX(Cancion) AS UltimaAlfabetica\nFROM   Canciones;",
-     "explica": "Con texto, MAX es la última en orden alfabético: «Volcán» empieza con V, después de todas.",
-     "fases": {
-      "agg": "MAX",
-      "col": "Cancion"
-     },
-     "resultado": {
-      "cols": [
-       "UltimaAlfabetica"
-      ],
-      "filas": [
-       [
-        "Volcán"
-       ]
-      ]
-     }
-    }
-   ]
-  },
-  {
-   "titulo": "Agrupar",
-   "clave": "GROUP BY",
-   "icono": "agrupar",
-   "tabla": "Viajes",
-   "intro": "GROUP BY arma un grupo por cada valor distinto y calcula una fila de resultado por grupo. Lo que no se resume, se agrupa.",
-   "contexto": "Trabajas en una app de transporte. Cada fila es un viaje con su conductor, ciudad y tarifa en dólares.",
-   "retos": [
-    {
-     "tipo": "opcion",
-     "pregunta": "¿Cuántas filas devuelve esta consulta?",
-     "muestra_sql": true,
-     "opciones": [
-      "3",
-      "10",
-      "1",
-      "5"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "10 son los viajes; GROUP BY devuelve una fila por ciudad.",
-      "Sin GROUP BY habría 1 fila; con GROUP BY hay una por ciudad.",
-      "5 son los viajes de Quito, no las filas."
-     ],
-     "sql": "SELECT Ciudad, COUNT(*) AS Viajes\nFROM   Viajes\nGROUP BY Ciudad;",
-     "explica": "Hay 3 ciudades distintas (Quito, Guayaquil y Cuenca): 3 grupos, 3 filas.",
-     "fases": {
-      "agg": "COUNT",
-      "col": "*",
-      "group": "Ciudad"
-     },
-     "resultado": {
-      "cols": [
-       "Ciudad",
-       "Viajes"
-      ],
-      "filas": [
-       [
-        "Cuenca",
-        "2"
-       ],
-       [
-        "Guayaquil",
-        "3"
-       ],
-       [
-        "Quito",
-        "5"
-       ]
-      ]
-     }
-    },
-    {
-     "tipo": "opcion",
-     "pregunta": "Con esa misma consulta, ¿cuántos viajes hubo en Quito?",
-     "muestra_sql": true,
-     "opciones": [
-      "5",
-      "3",
-      "2",
-      "10"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "3 son los de Guayaquil.",
-      "2 son los de Cuenca.",
-      "10 son todos los viajes."
-     ],
-     "sql": "SELECT Ciudad, COUNT(*) AS Viajes\nFROM   Viajes\nGROUP BY Ciudad;",
-     "explica": "El grupo de Quito reúne 5 filas (viajes 1, 2, 5, 7 y 9).",
-     "fases": {
-      "agg": "COUNT",
-      "col": "*",
-      "group": "Ciudad"
-     },
-     "resultado": {
-      "cols": [
-       "Ciudad",
-       "Viajes"
-      ],
-      "filas": [
-       [
-        "Cuenca",
-        "2"
-       ],
-       [
-        "Guayaquil",
-        "3"
-       ],
-       [
-        "Quito",
-        "5"
-       ]
-      ]
-     }
-    },
-    {
-     "tipo": "opcion",
-     "pregunta": "¿Qué conductor ganó más dinero en total?",
-     "opciones": [
-      "María",
-      "Pedro",
-      "Jorge"
-     ],
-     "correcta": 0,
-     "porque": [
-      "",
-      "Pedro hizo más viajes (4), pero suma 17.50; María suma 20.00.",
-      "Jorge suma 12.00, el menor."
-     ],
-     "sql": "SELECT Conductor, SUM(Tarifa) AS Ganado\nFROM   Viajes\nGROUP BY Conductor\nORDER BY Ganado DESC;",
-     "explica": "Un grupo por conductor y SUM(Tarifa) en cada uno: María 20.00, Pedro 17.50 y Jorge 12.00.",
-     "fases": {
-      "agg": "SUM",
-      "col": "Tarifa",
-      "group": "Conductor"
-     },
-     "resultado": {
-      "cols": [
-       "Conductor",
-       "Ganado"
-      ],
-      "filas": [
-       [
-        "María",
-        "20.00"
-       ],
-       [
-        "Pedro",
-        "17.50"
-       ],
-       [
-        "Jorge",
-        "12.00"
-       ]
-      ]
-     }
-    },
-    {
      "tipo": "error",
-     "pregunta": "Esta consulta da error. Toca la línea que lo causa.",
+     "de": "kevin",
+     "hora": "14:20",
+     "pregunta": "Quiero el total recaudado por cada agencia, pero mi consulta da error. ¿Me ayudas? Toca la línea que lo causa.",
      "lineas": [
-      "SELECT Conductor, Ciudad, SUM(Tarifa) AS Ganado",
-      "FROM   Viajes",
-      "GROUP BY Conductor;"
+      "SELECT Agencia, Servicio, SUM(Monto) AS Total",
+      "FROM   PagosServicios",
+      "GROUP BY Agencia;"
      ],
      "mala": 0,
-     "corregida": "SELECT Conductor, SUM(Tarifa) AS Ganado\nFROM   Viajes\nGROUP BY Conductor;",
-     "explica": "Ciudad no está en el GROUP BY ni dentro de una función. Pedro trabajó en Quito y en Guayaquil: ¿cuál mostraría? Se quita Ciudad (o se agrega al GROUP BY).",
+     "corregida": "SELECT Agencia, SUM(Monto) AS Total\nFROM   PagosServicios\nGROUP BY Agencia;",
+     "explica": "Servicio no está en el GROUP BY ni dentro de una función. El grupo Centro tiene pagos de Luz, Internet y Agua: ¿cuál mostraría? Se quita Servicio del SELECT (o se agrega al GROUP BY para tener una fila por agencia y servicio).",
      "fases": {
       "agg": "SUM",
-      "col": "Tarifa",
-      "group": "Conductor"
+      "col": "Monto",
+      "group": "Agencia"
      },
-     "mensaje": "Msg 8120 · Column 'Viajes.Ciudad' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.",
+     "gracias": "¡Gracias! Ya me salió el reporte.",
+     "mensaje": "Msg 8120 · Column 'PagosServicios.Servicio' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.",
      "resultado": {
       "cols": [
-       "Conductor",
-       "Ganado"
+       "Agencia",
+       "Total"
       ],
       "filas": [
        [
-        "Jorge",
-        "12.00"
+        "Centro",
+        "135.00"
        ],
        [
-        "María",
-        "20.00"
+        "Norte",
+        "119.50"
        ],
        [
-        "Pedro",
-        "17.50"
+        "Nrte",
+        "35.00"
+       ],
+       [
+        "Sur",
+        "67.00"
        ]
       ]
      }
@@ -1149,35 +1291,39 @@ window.JUEGO = {
    ]
   },
   {
-   "titulo": "Filtrar grupos",
+   "dia": "Viernes",
+   "area": "Riesgo Operativo",
    "clave": "HAVING",
-   "icono": "filtrar",
-   "tabla": "Tickets",
-   "intro": "HAVING filtra GRUPOS después de agrupar, usando totales como COUNT o SUM. WHERE filtra FILAS antes de agrupar.",
-   "contexto": "Trabajas en la mesa de ayuda de una empresa. Cada fila es un ticket atendido por un técnico, con sus horas de trabajo.",
+   "icono": "riesgo",
+   "tabla": "PagosTarjeta",
+   "hora": "08:00",
+   "intro": "Hoy armas alertas con Riesgo Operativo. HAVING filtra GRUPOS después de agrupar, con totales como COUNT o SUM. WHERE filtra FILAS antes de agrupar.",
+   "contexto": "Pagos con tarjeta de débito en tres comercios afiliados. Cada pago trae la referencia que genera la terminal de pago (POS) del comercio.",
    "retos": [
     {
      "tipo": "opcion",
-     "pregunta": "¿Qué técnicos atendieron más de 3 tickets?",
+     "de": "diego",
+     "hora": "08:45",
+     "pregunta": "Empecemos por los comercios con más movimiento. ¿Qué comercios registraron más de 3 pagos?",
      "opciones": [
-      "Solo Ana",
-      "Ana y Bruno",
-      "Los tres",
-      "Ninguno"
+      "Café Andino y Farmacia Sol",
+      "Los tres comercios",
+      "Solo Ferretería Ruiz",
+      "Solo Café Andino"
      ],
      "correcta": 0,
      "porque": [
       "",
-      "Bruno tiene 3 tickets: «más de 3» no incluye el 3.",
-      "Bruno y Carlos tienen 3 cada uno; solo Ana pasa de 3.",
-      "Ana tiene 4 tickets."
+      "Ferretería Ruiz tiene 3 pagos: «más de 3» no incluye el 3.",
+      "Ferretería Ruiz es la que más dinero mueve, pero se pidió cantidad de pagos, y tiene 3.",
+      "Farmacia Sol también tiene 4 pagos."
      ],
-     "sql": "SELECT Tecnico, COUNT(*) AS Tickets\nFROM   Tickets\nGROUP BY Tecnico\nHAVING COUNT(*) > 3;",
-     "explica": "Un grupo por técnico: Ana 4, Bruno 3, Carlos 3. HAVING COUNT(*) > 3 deja solo a Ana.",
+     "sql": "SELECT Comercio, COUNT(*) AS Pagos\nFROM   PagosTarjeta\nGROUP BY Comercio\nHAVING COUNT(*) > 3;",
+     "explica": "Un grupo por comercio: Café Andino 4, Farmacia Sol 4 y Ferretería Ruiz 3. HAVING COUNT(*) > 3 deja a los dos primeros.",
      "fases": {
       "agg": "COUNT",
       "col": "*",
-      "group": "Tecnico",
+      "group": "Comercio",
       "having": [
        "COUNT",
        "*",
@@ -1185,14 +1331,19 @@ window.JUEGO = {
        3
       ]
      },
+     "gracias": "Bien. Ahora vamos a lo importante: las alertas.",
      "resultado": {
       "cols": [
-       "Tecnico",
-       "Tickets"
+       "Comercio",
+       "Pagos"
       ],
       "filas": [
        [
-        "Ana",
+        "Café Andino",
+        "4"
+       ],
+       [
+        "Farmacia Sol",
         "4"
        ]
       ]
@@ -1200,104 +1351,108 @@ window.JUEGO = {
     },
     {
      "tipo": "clasifica",
-     "pregunta": "¿Cada condición va en WHERE o en HAVING?",
+     "de": "diego",
+     "hora": "09:30",
+     "pregunta": "Estoy armando las reglas de alerta. ¿Cada condición va en WHERE o en HAVING?",
      "items": [
       [
-       "Prioridad = 'Alta'",
+       "Estado = 'RECHAZADO'",
        "WHERE",
-       "Mira la prioridad de cada ticket (una fila)."
+       "Mira el estado de cada pago (una fila)."
       ],
       [
-       "COUNT(*) > 3",
+       "COUNT(*) >= 2",
        "HAVING",
        "COUNT es un total del grupo."
       ],
       [
-       "Horas > 2",
+       "Monto > 50",
        "WHERE",
-       "Mira las horas de cada ticket (una fila)."
+       "Mira el monto de cada pago (una fila)."
       ],
       [
-       "SUM(Horas) > 9",
+       "SUM(Monto) > 100",
        "HAVING",
        "SUM es un total del grupo."
       ]
      ],
-     "explica": "Si la condición usa COUNT, SUM, AVG, MIN o MAX, mira un grupo: HAVING. Si mira una columna de cada fila: WHERE."
+     "explica": "Si la condición usa COUNT, SUM, AVG, MIN o MAX, mira un grupo: va en HAVING. Si mira una columna de cada fila, va en WHERE.",
+     "gracias": "Perfecto, así quedan las reglas."
     },
     {
      "tipo": "opcion",
-     "pregunta": "¿Qué técnicos suman más de 9 horas de trabajo?",
+     "de": "diego",
+     "hora": "11:15",
+     "pregunta": "Farmacia Sol dice que a un cliente se le cobró dos veces el mismo pago. ¿Qué referencia aparece más de una vez?",
      "opciones": [
-      "Ana y Carlos",
-      "Solo Carlos",
-      "Los tres",
-      "Ana y Bruno"
+      "POS-1006",
+      "POS-1003",
+      "POS-1001",
+      "Ninguna"
      ],
      "correcta": 0,
      "porque": [
       "",
-      "Ana suma 3 + 2 + 1 + 4 = 10, también pasa de 9.",
-      "Bruno suma 8: no pasa de 9.",
-      "Bruno suma 8 y Carlos 13."
+      "POS-1003 tiene el mismo monto que POS-1002 (4.50), pero sus referencias son distintas: son dos pagos diferentes.",
+      "POS-1001 aparece una sola vez.",
+      "Revisa los pagos 806 y 807: misma referencia y mismo monto."
      ],
-     "sql": "SELECT Tecnico, SUM(Horas) AS Horas\nFROM   Tickets\nGROUP BY Tecnico\nHAVING SUM(Horas) > 9;",
-     "explica": "SUM(Horas) por técnico: Ana 10, Bruno 8, Carlos 13. HAVING deja a Ana y a Carlos.",
+     "sql": "SELECT Referencia, COUNT(*) AS Veces\nFROM   PagosTarjeta\nGROUP BY Referencia\nHAVING COUNT(*) > 1;",
+     "explica": "GROUP BY Referencia arma un grupo por referencia y HAVING COUNT(*) > 1 deja solo las repetidas. Es la consulta clásica para encontrar duplicados: POS-1006 se cobró dos veces (pagos 806 y 807).",
      "fases": {
-      "agg": "SUM",
-      "col": "Horas",
-      "group": "Tecnico",
+      "agg": "COUNT",
+      "col": "*",
+      "group": "Referencia",
       "having": [
-       "SUM",
-       "Horas",
+       "COUNT",
+       "*",
        ">",
-       9
+       1
       ]
      },
+     "gracias": "Confirmado: cobro duplicado. Hoy mismo se le devuelve el valor al cliente.",
      "resultado": {
       "cols": [
-       "Tecnico",
-       "Horas"
+       "Referencia",
+       "Veces"
       ],
       "filas": [
        [
-        "Ana",
-        "10"
-       ],
-       [
-        "Carlos",
-        "13"
+        "POS-1006",
+        "2"
        ]
       ]
      }
     },
     {
      "tipo": "opcion",
-     "pregunta": "Contando solo los tickets de prioridad Alta, ¿qué técnicos tienen 2 o más?",
+     "de": "diego",
+     "hora": "14:00",
+     "pregunta": "Regla final: si un comercio tiene 2 o más pagos RECHAZADOS en el día, enviamos un técnico a revisar su terminal POS. ¿A qué comercios hay que enviar técnico?",
      "opciones": [
-      "Ana y Carlos",
-      "Solo Carlos",
-      "Los tres",
-      "Solo Ana"
+      "Solo Café Andino",
+      "Café Andino y Ferretería Ruiz",
+      "Café Andino y Farmacia Sol",
+      "Ninguno"
      ],
      "correcta": 0,
      "porque": [
       "",
-      "Ana también tiene 2 tickets de prioridad Alta (1 y 8).",
-      "Bruno tiene solo 1 ticket Alto.",
-      "Carlos también tiene 2 (tickets 4 y 10)."
+      "Ferretería Ruiz tiene un solo pago rechazado (808).",
+      "Farmacia Sol tiene 4 pagos, pero ninguno rechazado: el WHERE los descarta antes de agrupar.",
+      "Café Andino tiene 3 pagos rechazados."
      ],
-     "sql": "SELECT Tecnico, COUNT(*) AS Altas\nFROM   Tickets\nWHERE  Prioridad = 'Alta'\nGROUP BY Tecnico\nHAVING COUNT(*) >= 2;",
-     "explica": "WHERE deja los 5 tickets de prioridad Alta; GROUP BY los reparte (Ana 2, Bruno 1, Carlos 2) y HAVING deja a Ana y Carlos.",
+     "sql": "SELECT Comercio, COUNT(*) AS Rechazados\nFROM   PagosTarjeta\nWHERE  Estado = 'RECHAZADO'\nGROUP BY Comercio\nHAVING COUNT(*) >= 2;",
+     "explica": "WHERE deja los 4 pagos rechazados; GROUP BY los reparte (Café Andino 3, Ferretería Ruiz 1) y HAVING deja solo a Café Andino.",
      "fases": {
       "agg": "COUNT",
       "col": "*",
       "where": [
-       "Prioridad",
+       "Estado",
        "=",
-       "Alta"
+       "RECHAZADO"
       ],
-      "group": "Tecnico",
+      "group": "Comercio",
       "having": [
        "COUNT",
        "*",
@@ -1305,19 +1460,16 @@ window.JUEGO = {
        2
       ]
      },
+     "gracias": "Listo: el técnico visita Café Andino mañana a primera hora.",
      "resultado": {
       "cols": [
-       "Tecnico",
-       "Altas"
+       "Comercio",
+       "Rechazados"
       ],
       "filas": [
        [
-        "Ana",
-        "2"
-       ],
-       [
-        "Carlos",
-        "2"
+        "Café Andino",
+        "3"
        ]
       ]
      }
@@ -1325,16 +1477,20 @@ window.JUEGO = {
    ]
   },
   {
-   "titulo": "Misión final",
+   "dia": "Fin de mes",
+   "area": "Comité de Gerencia",
    "clave": "TODO JUNTO",
-   "icono": "trofeo",
-   "tabla": "Ventas",
-   "intro": "Ahora todo junto: el orden de las cláusulas, los errores típicos y una consulta completa.",
-   "contexto": "Eres analista en una tienda de tecnología. Cada fila es una venta con su cantidad y precio.",
+   "icono": "comite",
+   "tabla": "Transacciones",
+   "hora": "08:00",
+   "intro": "Es el cierre de mes y el informe para el comité de gerencia lleva todo junto: WHERE, GROUP BY, HAVING y ORDER BY, en el orden correcto.",
+   "contexto": "Muestra de transacciones del mes por canal de atención. RECHAZADA = la operación no se completó y no movió dinero.",
    "retos": [
     {
      "tipo": "orden",
-     "pregunta": "Ordena las cláusulas como se ESCRIBEN en una consulta.",
+     "de": "lucia",
+     "hora": "08:30",
+     "pregunta": "El comité quiere ver los canales que movieron más de 400.00 en transacciones APROBADAS, del mayor al menor. Arma la consulta: ordena las cláusulas como se ESCRIBEN.",
      "items": [
       "SELECT",
       "FROM",
@@ -1343,40 +1499,47 @@ window.JUEGO = {
       "HAVING",
       "ORDER BY"
      ],
-     "sql": "SELECT Categoria, SUM(Cantidad) AS Unidades\nFROM   Ventas\nWHERE  Precio > 100\nGROUP BY Categoria\nHAVING SUM(Cantidad) > 4\nORDER BY Unidades DESC;",
-     "explica": "Siempre se escribe en este orden. Esta consulta da las categorías de productos de más de 100 dólares que vendieron más de 4 unidades.",
+     "sql": "SELECT Canal, SUM(Monto) AS Total\nFROM   Transacciones\nWHERE  Estado = 'APROBADA'\nGROUP BY Canal\nHAVING SUM(Monto) > 400\nORDER BY Total DESC;",
+     "explica": "Siempre se escriben en este orden. Resultado: Ventanilla 1250.00 y App 455.00; Cajero (300.00) y Web (225.00) no pasan el HAVING.",
      "fases": {
       "agg": "SUM",
-      "col": "Cantidad",
+      "col": "Monto",
       "where": [
-       "Precio",
-       ">",
-       100
+       "Estado",
+       "=",
+       "APROBADA"
       ],
-      "group": "Categoria",
+      "group": "Canal",
       "having": [
        "SUM",
-       "Cantidad",
+       "Monto",
        ">",
-       4
+       400
       ]
      },
+     "gracias": "Muy bien. Antes de enviarlo, revisemos cómo lo procesa SQL.",
      "resultado": {
       "cols": [
-       "Categoria",
-       "Unidades"
+       "Canal",
+       "Total"
       ],
       "filas": [
        [
-        "Celulares",
-        "9"
+        "Ventanilla",
+        "1250.00"
+       ],
+       [
+        "App",
+        "455.00"
        ]
       ]
      }
     },
     {
      "tipo": "orden",
-     "pregunta": "Ahora ordénalas como SQL las LEE (procesa).",
+     "de": "lucia",
+     "hora": "09:15",
+     "pregunta": "Revisión de código antes de enviar: ¿en qué orden PROCESA SQL Server tu consulta? Ordena las cláusulas.",
      "items": [
       "FROM",
       "WHERE",
@@ -1385,97 +1548,108 @@ window.JUEGO = {
       "SELECT",
       "ORDER BY"
      ],
-     "explica": "SQL primero busca la tabla (FROM), filtra filas (WHERE), arma grupos (GROUP BY), filtra grupos (HAVING), calcula columnas (SELECT) y al final ordena (ORDER BY). Por eso WHERE no ve totales y el alias solo sirve en ORDER BY."
+     "explica": "SQL toma la tabla (FROM), filtra filas (WHERE), arma grupos (GROUP BY), filtra grupos (HAVING), calcula las columnas (SELECT) y al final ordena (ORDER BY). Por eso WHERE no puede usar totales y el alias Total solo sirve en ORDER BY.",
+     "gracias": "Exacto. Saber esto te ahorra muchos errores."
     },
     {
      "tipo": "error",
-     "pregunta": "Esta consulta da error. Toca la línea que lo causa.",
+     "de": "kevin",
+     "hora": "10:40",
+     "pregunta": "Intenté la misma consulta con todas las condiciones en el WHERE y me sale error. Toca la línea que lo causa.",
      "lineas": [
-      "SELECT Categoria, SUM(Cantidad) AS Unidades",
-      "FROM   Ventas",
-      "WHERE  SUM(Cantidad) > 5",
-      "GROUP BY Categoria;"
+      "SELECT Canal, SUM(Monto) AS Total",
+      "FROM   Transacciones",
+      "WHERE  Estado = 'APROBADA' AND SUM(Monto) > 400",
+      "GROUP BY Canal;"
      ],
      "mala": 2,
-     "corregida": "SELECT Categoria, SUM(Cantidad) AS Unidades\nFROM   Ventas\nGROUP BY Categoria\nHAVING SUM(Cantidad) > 5;",
-     "explica": "WHERE se lee antes de agrupar y todavía no existe el total. La condición sobre SUM va en HAVING.",
+     "corregida": "SELECT Canal, SUM(Monto) AS Total\nFROM   Transacciones\nWHERE  Estado = 'APROBADA'\nGROUP BY Canal\nHAVING SUM(Monto) > 400;",
+     "explica": "WHERE se procesa antes de agrupar: ahí todavía no existe SUM(Monto). La condición del estado (una fila) se queda en WHERE y la del total (un grupo) pasa a HAVING.",
      "fases": {
       "agg": "SUM",
-      "col": "Cantidad",
-      "group": "Categoria",
+      "col": "Monto",
+      "where": [
+       "Estado",
+       "=",
+       "APROBADA"
+      ],
+      "group": "Canal",
       "having": [
        "SUM",
-       "Cantidad",
+       "Monto",
        ">",
-       5
+       400
       ]
      },
+     "gracias": "¡Gracias! Ahora entiendo por qué va en HAVING.",
      "mensaje": "Msg 147 · An aggregate may not appear in the WHERE clause unless it is in a subquery contained in a HAVING clause or a select list, and the column being aggregated is an outer reference.",
      "resultado": {
       "cols": [
-       "Categoria",
-       "Unidades"
+       "Canal",
+       "Total"
       ],
       "filas": [
        [
-        "Accesorios",
-        "25"
+        "App",
+        "455.00"
        ],
        [
-        "Celulares",
-        "9"
+        "Ventanilla",
+        "1250.00"
        ]
       ]
      }
     },
     {
      "tipo": "opcion",
-     "pregunta": "¿Cuántas filas devuelve esta consulta?",
+     "de": "lucia",
+     "hora": "11:30",
      "muestra_sql": true,
+     "pregunta": "Última revisión. Si alguien olvida el WHERE Estado = 'APROBADA', ¿cuántos canales aparecerían en el informe?",
      "opciones": [
-      "1",
-      "2",
       "3",
-      "4"
+      "2",
+      "4",
+      "1"
      ],
-     "correcta": 1,
+     "correcta": 0,
      "porque": [
-      "Celulares y Laptops tienen 3 ventas de más de 100 cada una.",
       "",
-      "Monitores tiene solo 2 ventas de más de 100: no cumple el HAVING.",
-      "Accesorios desaparece en el WHERE: ninguno cuesta más de 100."
+      "2 son los canales CON el WHERE. Sin él, las rechazadas también suman: Web pasa de 225.00 a 525.00.",
+      "Cajero suma 300.00 y no pasa el HAVING.",
+      "Ventanilla no es el único: App y Web también pasan de 400 al sumar las rechazadas."
      ],
-     "sql": "SELECT Categoria, COUNT(*) AS Ventas\nFROM   Ventas\nWHERE  Precio > 100\nGROUP BY Categoria\nHAVING COUNT(*) >= 3;",
-     "explica": "WHERE deja 8 ventas de más de 100 (sin accesorios). GROUP BY: Celulares 3, Laptops 3, Monitores 2. HAVING deja 2 filas.",
+     "sql": "SELECT Canal, SUM(Monto) AS Total\nFROM   Transacciones\nGROUP BY Canal\nHAVING SUM(Monto) > 400;",
+     "explica": "Sin el WHERE, App suma 550.00 y Web 525.00 porque entran las rechazadas. Web aparecería en el informe con dinero que nunca se movió: en un informe financiero, el filtro de estado es obligatorio.",
      "fases": {
-      "agg": "COUNT",
-      "col": "*",
-      "where": [
-       "Precio",
-       ">",
-       100
-      ],
-      "group": "Categoria",
+      "agg": "SUM",
+      "col": "Monto",
+      "group": "Canal",
       "having": [
-       "COUNT",
-       "*",
-       ">=",
-       3
+       "SUM",
+       "Monto",
+       ">",
+       400
       ]
      },
+     "gracias": "Exacto. Informe enviado al comité. ¡Cerraste tu primer mes!",
      "resultado": {
       "cols": [
-       "Categoria",
-       "Ventas"
+       "Canal",
+       "Total"
       ],
       "filas": [
        [
-        "Celulares",
-        "3"
+        "App",
+        "550.00"
        ],
        [
-        "Laptops",
-        "3"
+        "Ventanilla",
+        "1250.00"
+       ],
+       [
+        "Web",
+        "525.00"
        ]
       ]
      }

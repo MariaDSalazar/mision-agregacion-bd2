@@ -81,32 +81,26 @@ function sticker(k) {
 const ic = d => `<svg viewBox="0 0 24 24" class="ic" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2"
   stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
 const ICONO = {
-  contar: ic('<path d="M5 5v14M9 5v14M13 5v14M17 5v14M3 16l18-7"/>'),
-  sumar: ic('<path d="M18 5H6l6 7-6 7h12"/>'),
-  extremos: ic('<path d="M7 20V4M3 8l4-4 4 4M17 4v16M13 16l4 4 4-4"/>'),
-  agrupar: ic('<rect x="3" y="4" width="7" height="6" rx="1.5"/><rect x="14" y="4" width="7" height="6" rx="1.5"/><rect x="8.5" y="14" width="7" height="6" rx="1.5"/>'),
-  filtrar: ic('<path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/>'),
   trofeo: ic('<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 5M17 6h3a3 3 0 0 1-3 5"/>'),
   candado: ic('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),
   estrella: ic('<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z" fill="currentColor"/>'),
   bien: ic('<path d="m4 12 5 5L20 6"/>'),
-  mal: ic('<path d="M6 6l12 12M18 6 6 18"/>'),
   sig: ic('<path d="M5 12h14M13 6l6 6-6 6"/>'),
   ant: ic('<path d="M19 12H5M11 6l-6 6 6 6"/>'),
   play: ic('<path d="M7 4v16l13-8z" fill="currentColor"/>'),
   pausa: ic('<path d="M7 4v16M17 4v16"/>'),
-  mapa: ic('<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/>'),
   descargar: ic('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'),
-  qr: ic('<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h2M20 14v2"/>'),
-  repetir: ic('<path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/>'),
   codigo: ic('<path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/>'),
   ojo: ic('<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'),
-  // casos de la vida real
-  delivery: ic('<path d="M5 8h14l-1.2 12H6.2zM9 8a3 3 0 0 1 6 0"/>'),
-  reloj: ic('<rect x="7" y="6" width="10" height="12" rx="3"/><path d="M9 6l1-3h4l1 3M9 18l1 3h4l1-3M12 10v2.5l1.5 1"/>'),
-  musica: ic('<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'),
-  transporte: ic('<path d="M4 16h16v-4l-2.5-5h-11L4 12zM4 12h16"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/>'),
-  soporte: ic('<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a4 4 0 0 1-4 2h-2"/>'),
-  tienda: ic('<rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M2.5 19h19"/>'),
+  agenda: ic('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h3M7 17h3M14 14h3"/>'),
+  enviar: ic('<path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/>'),
+  persona: ic('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'),
+  banco: ic('<path d="M3 9.5 12 4l9 5.5zM5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/>'),
+  // un ícono por área del banco (día de la semana)
+  operaciones: ic('<path d="M4 8h14M14 4l4 4-4 4M20 16H6M10 12l-4 4 4 4"/>'),
+  tesoreria: ic('<rect x="3" y="4" width="18" height="15" rx="2"/><circle cx="12" cy="11.5" r="3.5"/><path d="M12 8v1M12 14v1M15.5 11.5h-1M9.5 11.5h-1M6 19v2M18 19v2"/>'),
+  cajero: ic('<rect x="4" y="3" width="16" height="12" rx="2"/><path d="M8 7h8M8 10h5M7 15v5h10v-5M10 18h4"/>'),
+  agencia: ic('<path d="M4 21V8l8-5 8 5v13M2 21h20M9 21v-6h6v6M8 10h2M14 10h2"/>'),
+  riesgo: ic('<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="M12 8v5M12 16v.5"/>'),
+  comite: ic('<rect x="3" y="3" width="18" height="12" rx="1.5"/><path d="M7 11l3-3 3 2 4-4M12 15v3M8 21l4-3 4 3"/>'),
 };
-const ICONO_CASO = { Pedidos: 'delivery', Actividad: 'reloj', Canciones: 'musica', Viajes: 'transporte', Tickets: 'soporte', Ventas: 'tienda' };

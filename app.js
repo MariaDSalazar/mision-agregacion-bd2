@@ -1,12 +1,13 @@
 'use strict';
-// Misión Agregación · juego individual de la Semana 6 (funciones de agregación y agrupación).
-// Los datos y los resultados vienen de datos.js, generado con consultas reales en SQL Server.
+// Misión Agregación · juego individual de la Semana 6 (funciones de agregación y agrupación):
+// una semana como analista de datos en un banco ficticio. Los datos y los resultados vienen de
+// datos.js, generado con consultas reales en SQL Server.
 
 const J = window.JUEGO;
-const CLAVE = 'mision-agregacion-bd2-v1';
+const CLAVE = 'mision-agregacion-bd2-v2';   // v2: simulación del banco
 const app = document.getElementById('app');
+const ESTADO_MAL = new Set(['RECHAZADA', 'RECHAZADO', 'DEVUELTO']);
 const GRUPO_COLORES = ['#002C71', '#C88E00', '#910048', '#1E8C7E', '#6B4FBB'];
-const DESC_FUNCION = { COUNT: '¿cuántos?', SUM: '¿total?', AVG: '¿promedio?', MIN: '¿el menor?', MAX: '¿el mayor?' };
 const TOTAL = J.niveles.reduce((s, n) => s + n.retos.length, 0);
 
 let E = cargar();
@@ -49,6 +50,20 @@ function nombreBonito(s) {
     .map((p, i) => i > 0 && PARTICULAS.has(p) ? p : p.replace(/(^|['-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase()))
     .join(' ');
 }
+function avatar(k) {
+  const p = J.personas[k];
+  const ini = p.nombre.split(' ').map(x => x[0]).join('').slice(0, 2);
+  return `<span class="avatar" style="background:${p.color}" aria-hidden="true">${ini}</span>`;
+}
+function mensaje(k, hora, html) {
+  const p = J.personas[k];
+  return `<div class="msj">${avatar(k)}<div class="burbuja"><div class="de"><b>${esc(p.nombre)}</b><span>${esc(p.cargo)}</span><span class="hora">${hora}</span></div>${html}</div></div>`;
+}
+function gafete() {
+  return `<div class="gafete"><div class="foto">${ICONO.persona}</div>
+    <div class="quien"><b>${esc(E.nombre)} ${esc(E.apellido)}</b><span class="cargo">Analista de Datos Junior</span><small>Gerencia de Analítica de Datos</small></div>
+    <div class="banco">${ICONO.banco}<span>${esc(J.banco)}</span></div></div>`;
+}
 function arriba() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
 function barra() {
@@ -83,6 +98,7 @@ function tablaHTML(nombre, est = {}) {
       if (tipo === 'int' || tipo === 'dec') cl.push('n');
       if (v === null) cl.push('nulo');
       if (c === est.col) cl.push('hl');
+      if (c === 'Estado') cl.push(ESTADO_MAL.has(v) ? 'est-no' : 'est-ok');
       const nota = v === null && c === est.col && est.nulos ? '<span class="nocuenta">no cuenta</span>' : '';
       return `<td class="${cl.join(' ')}">${esc(valor(v, tipo))}${nota}</td>`;
     }).join('');
@@ -206,22 +222,22 @@ function pasos(reto, nombreTabla) {
 function inicio() {
   const chips = ['COUNT', 'SUM', 'AVG', 'MIN', 'MAX', 'GROUP BY', 'HAVING'].map(c => `<span class="chip oscuro">${c}</span>`).join('');
   const registro = E.nombre
-    ? `<h2>Hola de nuevo, ${esc(E.nombre)}</h2><p class="suave">Llevas ${respondidos()} de ${TOTAL} retos y ${aciertos()} aciertos.</p>
-       <div class="fila-btn"><button class="btn grande" id="seguir">Continuar la misión ${ICONO.sig}</button></div>
+    ? `${gafete()}<h2>Hola de nuevo, ${esc(E.nombre)}</h2><p class="suave">Llevas ${respondidos()} de ${TOTAL} solicitudes atendidas y ${aciertos()} respuestas correctas.</p>
+       <div class="fila-btn"><button class="btn grande" id="seguir">Volver a la oficina ${ICONO.sig}</button></div>
        <div class="fila-btn"><button class="btn sec" id="otro">Soy otra persona / empezar de nuevo</button></div>`
-    : `<h2>Registro</h2><p class="suave">Escribe tu nombre y tu apellido: aparecerán en tu certificado.</p>
+    : `<h2>Registro de ingreso</h2><p class="suave">Escribe tu nombre y tu apellido: van en tu credencial y en tu certificado.</p>
        <label for="nom">Nombre</label><input type="text" id="nom" autocomplete="given-name" maxlength="30">
        <label for="ape">Apellido</label><input type="text" id="ape" autocomplete="family-name" maxlength="30">
        <p class="aviso" id="aviso"></p>
-       <button class="btn grande" id="empezar">Empezar la misión ${ICONO.sig}</button>`;
+       <button class="btn grande" id="empezar">Empezar mi primer día ${ICONO.sig}</button>`;
   pintar(`<section class="portada">${datoSvg({ cara: 'feliz', brazos: 'arriba' })}
       <h1>Misión <b>Agregación</b></h1>
-      <p>Funciones de agregación y agrupación en SQL · Semana 6</p>
+      <p>Una semana como analista de datos en <b>${esc(J.banco)}</b> · SQL · Semana 6</p>
       <div class="chips-niveles">${chips}</div></section>
     <div class="card">${registro}</div>
-    <div class="card"><h2>${ICONO.mapa} Cómo se juega</h2>
-      <p>Son <b>6 niveles</b> con casos de la vida real: una app de delivery, un reloj inteligente, una app de música, una app de transporte, la mesa de ayuda y una tienda de tecnología. Cada nivel es más difícil que el anterior.</p>
-      <p>En cada reto ves la tabla completa, respondes y después miras <b>cómo lo resuelve SQL, paso a paso</b>. Al terminar recibes tu <b>certificado</b>.</p></div>`);
+    <div class="card"><h2>${ICONO.banco} Tu nuevo trabajo</h2>
+      <p>Entras como <b>analista de datos junior</b> en ${esc(J.banco)}, un banco ficticio. Cada día apoyas a un área distinta: Operaciones, Tesorería, Canales Digitales, Gerencia Comercial, Riesgo Operativo y, al final, el cierre de mes. La dificultad sube cada día.</p>
+      <p>Tus compañeros te escriben con pedidos reales de trabajo. Los datos vienen como en la vida real: con <b>duplicados, celdas vacías, operaciones rechazadas y errores de digitación</b>. Respondes, ves <b>cómo lo resuelve SQL paso a paso</b> y al final recibes tu <b>certificado</b>.</p></div>`);
   if (E.nombre) {
     $('#seguir').onclick = mapa;
     $('#otro').onclick = () => { if (confirm('Se borrará el progreso guardado en este dispositivo. ¿Continuar?')) { E = { nombre: '', apellido: '', resp: {} }; guardar(); inicio(); } };
@@ -243,12 +259,16 @@ function mapa() {
   const nodos = J.niveles.map((nv, n) => {
     const hecho = nivelHecho(n), abierto = nivelAbierto(n);
     const clase = hecho ? 'hecho' : abierto ? 'actual' : '';
-    const der = hecho ? estrellasHTML(estrellas(n)) : abierto ? `<span class="chip">${ICONO.play} Jugar</span>` : `<span class="suave">${ICONO.candado}</span>`;
+    const der = hecho ? estrellasHTML(estrellas(n)) : abierto ? `<span class="chip">${ICONO.play} Entrar</span>` : `<span class="suave">${ICONO.candado}</span>`;
     return `<button class="nodo ${clase}" data-n="${n}" ${abierto ? '' : 'disabled'}>
       <span class="medalla">${ICONO[nv.icono]}<span class="num">${n + 1}</span></span>
-      <span><b>Nivel ${n + 1} · ${nv.titulo}</b><small>${J.tablas[nv.tabla].caso} · ${nv.clave}</small></span>${der}</button>`;
+      <span><b>${nv.dia} · ${nv.area}</b><small>${nv.clave} · ${J.tablas[nv.tabla].caso}</small></span>${der}</button>`;
   }).join('');
-  pintar(`<h2>${ICONO.mapa} Mapa de la misión</h2>
+  pintar(`${gafete()}
+    <div class="kpis"><div class="kpi"><b>${respondidos()}/${TOTAL}</b>solicitudes atendidas</div>
+      <div class="kpi"><b>${aciertos()}</b>respuestas correctas</div>
+      <div class="kpi"><b>${J.niveles.filter((_, n) => nivelHecho(n)).length}/${J.niveles.length}</b>días completos</div></div>
+    <h2>${ICONO.agenda} Tu agenda</h2>
     <div class="progreso"><i style="width:${pct}%"></i></div>
     <div class="mapa">${nodos}</div>
     ${todoHecho() ? `<div class="fila-btn"><button class="btn grande" id="cert">${ICONO.trofeo} Ver mi certificado</button></div>` : ''}`);
@@ -256,17 +276,21 @@ function mapa() {
   if (todoHecho()) $('#cert').onclick = certificado;
 }
 
+function casoHTML(nv) {
+  return `<div class="caso">${ICONO[nv.icono]}<div><b>${J.tablas[nv.tabla].caso}</b>${esc(nv.contexto)}</div></div>`;
+}
+
 function intro(n) {
   const nv = J.niveles[n];
   repaso = nivelHecho(n);
-  pintar(`<div class="cabeza-reto"><button class="btn sec" id="volver">${ICONO.mapa} Mapa</button>
-      <span class="chip oscuro">Nivel ${n + 1} · ${nv.clave}</span></div>
-    <div class="globo">${datoSvg({ cara: 'feliz', brazos: 'piensa' })}<div class="texto">${esc(nv.intro)}</div></div>
+  pintar(`<div class="cabeza-reto"><button class="btn sec" id="volver">${ICONO.agenda} Agenda</button>
+      <span class="chip oscuro">${nv.dia} · ${nv.area} · ${nv.clave}</span></div>
     <div class="card">
-      <div class="caso">${ICONO[ICONO_CASO[nv.tabla]]}<div><b>${J.tablas[nv.tabla].caso}</b>${esc(nv.contexto)}</div></div>
+      ${mensaje('lucia', nv.hora, `<p>${esc(nv.intro)}</p>`)}
+      ${casoHTML(nv)}
       ${tablaHTML(nv.tabla)}
-      ${repaso ? '<p class="suave"><b>Modo repaso:</b> ya terminaste este nivel; tu puntaje no cambia.</p>' : ''}
-      <div class="fila-btn"><button class="btn grande" id="comenzar">Comenzar los ${nv.retos.length} retos ${ICONO.sig}</button></div>
+      ${repaso ? '<p class="suave"><b>Modo repaso:</b> ya terminaste este día; tu puntaje no cambia.</p>' : ''}
+      <div class="fila-btn"><button class="btn grande" id="comenzar">Abrir la bandeja · ${nv.retos.length} solicitudes ${ICONO.sig}</button></div>
     </div>`);
   $('#volver').onclick = mapa;
   $('#comenzar').onclick = () => reto(n, 0);
@@ -279,28 +303,33 @@ function reto(n, r) {
     return `<i class="${k === r ? 'ahora' : c in E.resp && !repaso ? (E.resp[c] ? 'ok' : 'no') : ''}"></i>`;
   }).join('');
   const conTabla = rt.tipo !== 'orden' || rt.sql;
-  pintar(`<div class="cabeza-reto"><button class="btn sec" id="volver">${ICONO.mapa} Mapa</button>
-      <span class="chip oscuro">Nivel ${n + 1} · Reto ${r + 1} de ${nv.retos.length}</span><span class="puntos">${puntos}</span></div>
+  pintar(`<div class="cabeza-reto"><button class="btn sec" id="volver">${ICONO.agenda} Agenda</button>
+      <span class="chip oscuro">${nv.dia} · Solicitud ${r + 1} de ${nv.retos.length}</span><span class="puntos">${puntos}</span></div>
     <div class="card">
-      <div class="caso">${ICONO[ICONO_CASO[nv.tabla]]}<div><b>${J.tablas[nv.tabla].caso}</b>${esc(nv.contexto)}</div></div>
+      ${mensaje(rt.de, rt.hora, `<p class="pregunta">${esc(rt.pregunta)}</p>`)}
       <div class="reto-cuerpo">
-        <div>${conTabla ? tablaHTML(nv.tabla) : ''}</div>
-        <div><p class="pregunta">${esc(rt.pregunta)}</p>
-          ${rt.muestra_sql ? `<pre class="sql">${resaltar(rt.sql)}</pre><p></p>` : ''}
+        <div>${conTabla ? casoHTML(nv) + tablaHTML(nv.tabla) : ''}</div>
+        <div>${rt.muestra_sql ? `<pre class="sql">${resaltar(rt.sql)}</pre><p></p>` : ''}
+          <p class="tu-resp">${ICONO.enviar} Tu respuesta</p>
           <div id="zona"></div></div>
       </div>
       <div id="retro"></div>
       <div class="fila-btn oculto" id="nav"><button class="btn grande" id="siguiente"></button></div>
     </div>`);
   $('#volver').onclick = mapa;
-  ({ funcion: zonaOpciones, opcion: zonaOpciones, error: zonaError, orden: zonaOrden, clasifica: zonaClasifica })[rt.tipo](n, r, rt);
+  ({ opcion: zonaOpciones, error: zonaError, orden: zonaOrden, clasifica: zonaClasifica })[rt.tipo](n, r, rt);
 }
 
 /* ---------------- tipos de reto ---------------- */
+function barajar(a) {
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
 function zonaOpciones(n, r, rt) {
-  const cod = rt.tipo === 'funcion';
-  $('#zona').innerHTML = `<div class="opciones">${rt.opciones.map((o, i) =>
-    `<button class="op${cod ? ' cod' : ''}" data-i="${i}">${esc(o)}${cod ? `<small>${DESC_FUNCION[o] || ''}</small>` : ''}</button>`).join('')}</div>`;
+  const orden = barajar(rt.opciones.map((_, i) => i));
+  $('#zona').innerHTML = `<div class="opciones${rt.cod ? ' de-codigo' : ''}">${orden.map(i =>
+    `<button class="op${rt.cod ? ' cod' : ''}" data-i="${i}">${rt.cod ? resaltar(rt.opciones[i]) : esc(rt.opciones[i])}</button>`).join('')}</div>`;
   document.querySelectorAll('.op').forEach(b => {
     b.onclick = () => {
       const i = +b.dataset.i, ok = i === rt.correcta;
@@ -326,7 +355,7 @@ function zonaError(n, r, rt) {
 }
 
 function zonaOrden(n, r, rt) {
-  const fichas = rt.items.map((x, i) => [x, i]).sort(() => Math.random() - .5);
+  const fichas = barajar(rt.items.map((x, i) => [x, i]));
   const puesto = [];
   const dibujar = () => {
     $('#zona').innerHTML = `<div class="ranuras">${rt.items.map((_, k) => `<div class="ranura${puesto[k] !== undefined ? ' llena' : ''}" data-k="${k}"><span class="n">${k + 1}</span>${puesto[k] !== undefined ? esc(rt.items[puesto[k]]) : ''}</div>`).join('')}</div>
@@ -395,12 +424,13 @@ function responder(n, r, ok, porque) {
   if (!repaso) { E.resp[clave(n, r)] = ok; guardar(); }
   const arte = ok ? datoSvg({ cara: 'festeja', brazos: 'arriba' }) : sticker(numeroSticker(rt, n, r));
   $('#retro').innerHTML = `<div class="retro ${ok ? 'ok' : 'no'}">${arte}<div>
-      <h3>${ok ? '¡Correcto!' : 'No es correcto'}</h3>
+      <h3>${ok ? '¡Correcto! Respuesta enviada' : 'Ese dato no cuadra'}</h3>
+      ${ok ? `<div class="cita">${avatar(rt.de)}<span><b>${esc(J.personas[rt.de].nombre)}:</b> «${esc(rt.gracias)}»</span></div>` : ''}
       ${porque ? `<p><b>Por qué no:</b> ${esc(porque)}</p>` : ''}
       <p>${esc(rt.explica)}</p></div></div>${solucion(rt, nv.tabla)}`;
   activarPasos(rt, nv.tabla);
   const ultimo = r === nv.retos.length - 1;
-  $('#siguiente').innerHTML = ultimo ? `Terminar el nivel ${ICONO.sig}` : `Siguiente reto ${ICONO.sig}`;
+  $('#siguiente').innerHTML = ultimo ? `Cerrar el día ${ICONO.sig}` : `Siguiente solicitud ${ICONO.sig}`;
   $('#siguiente').onclick = () => (ultimo ? finNivel(n) : reto(n, r + 1));
   $('#nav').classList.remove('oculto');
   const jug = document.querySelector('header .jugador');
@@ -469,16 +499,16 @@ function confeti() {
 function finNivel(n) {
   const nv = J.niveles[n], est = estrellas(n), bien = aciertosNivel(n);
   const msj = repaso ? 'Repaso terminado. Tu puntaje no cambia.' :
-    est === 3 ? '¡Nivel perfecto!' : est === 2 ? '¡Muy bien! Casi perfecto.' : est === 1 ? 'Bien. Repasa los porqués para el siguiente nivel.' : 'Revisa las explicaciones: el siguiente nivel usa lo de este.';
+    est === 3 ? '¡Día perfecto! Todo el equipo confía en tus números.' : est === 2 ? '¡Muy buen día! Casi todo cuadró.' : est === 1 ? 'Buen día. Repasa los porqués: mañana se usa lo de hoy.' : 'Día difícil. Revisa las explicaciones antes de seguir: mañana se usa lo de hoy.';
   const siguiente = n + 1 < J.niveles.length;
   pintar(`<div class="card fin">${datoSvg({ cara: est >= 2 ? 'festeja' : 'feliz', brazos: est >= 2 ? 'arriba' : 'abajo' })}
-      <h2 style="justify-content:center">Nivel ${n + 1} · ${nv.titulo}</h2>
+      <h2 style="justify-content:center">${nv.dia} · ${nv.area}: día terminado</h2>
       ${estrellasHTML(est)}
-      <p><b>${bien} de ${nv.retos.length}</b> retos correctos · ${msj}</p>
+      <p><b>${bien} de ${nv.retos.length}</b> solicitudes bien resueltas · ${msj}</p>
       <div class="fila-btn">
-        ${siguiente ? `<button class="btn grande" id="sig">Ir al nivel ${n + 2} ${ICONO.sig}</button>` : `<button class="btn grande" id="cert">${ICONO.trofeo} Ver mi certificado</button>`}
+        ${siguiente ? `<button class="btn grande" id="sig">Ir al día siguiente: ${J.niveles[n + 1].dia} ${ICONO.sig}</button>` : `<button class="btn grande" id="cert">${ICONO.trofeo} Ver mi certificado</button>`}
       </div>
-      <div class="fila-btn"><button class="btn sec" id="mapa">${ICONO.mapa} Volver al mapa</button></div></div>`);
+      <div class="fila-btn"><button class="btn sec" id="mapa">${ICONO.agenda} Volver a la agenda</button></div></div>`);
   if (est >= 2 && !repaso) confeti();
   $('#mapa').onclick = mapa;
   if (siguiente) $('#sig').onclick = () => intro(n + 1);
@@ -486,7 +516,7 @@ function finNivel(n) {
 }
 
 /* ---------------- certificado ---------------- */
-function rango(p) { return p >= 90 ? 'Maestro de la agregación' : p >= 75 ? 'Analista de datos' : p >= 50 ? 'Explorador SQL' : 'Aprendiz SQL'; }
+function rango(p) { return p >= 90 ? 'Analista de datos senior' : p >= 75 ? 'Analista de datos' : p >= 50 ? 'Analista de datos junior' : 'Pasante de datos'; }
 function codigo(texto) {
   let h = 0x811c9dc5;
   for (const ch of texto) { h ^= ch.codePointAt(0); h = Math.imul(h, 0x01000193) >>> 0; }
@@ -514,7 +544,12 @@ async function dibujarCertificado() {
     const im = await cargarImg('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg));
     x.drawImage(im, W - 300, 92, 180, 200);
   } catch { /* sin mascota */ }
-  const centro = (txt, y, fuente, color) => { x.font = fuente; x.fillStyle = color; x.textAlign = 'center'; x.fillText(txt, W / 2, y); };
+  const centro = (txt, y, fuente, color) => {
+    x.font = fuente; x.fillStyle = color; x.textAlign = 'center';
+    let f = fuente;   // achica la letra si la línea no entra en el marco
+    while (x.measureText(txt).width > W - 260) { f = f.replace(/(\d+)px/, (_, t) => `${t - 1}px`); x.font = f; }
+    x.fillText(txt, W / 2, y);
+  };
   centro('CERTIFICADO DE LOGRO', 330, '800 66px Poppins, sans-serif', AZUL);
   x.fillStyle = DORADO; x.fillRect(W / 2 - 160, 352, 320, 6);
   centro('Se otorga a', 425, '400 30px Poppins, sans-serif', GRIS);
@@ -523,13 +558,14 @@ async function dibujarCertificado() {
   while (x.measureText(nombre).width > W - 360 && tam > 40) { tam -= 4; x.font = `800 ${tam}px Poppins, sans-serif`; }
   centro(nombre, 515, `800 ${tam}px Poppins, sans-serif`, MAG);
   x.strokeStyle = DORADO; x.lineWidth = 3; x.beginPath(); x.moveTo(W / 2 - 420, 545); x.lineTo(W / 2 + 420, 545); x.stroke();
-  centro('por completar la Misión Agregación: funciones de agregación y agrupación en SQL', 610, '600 30px Poppins, sans-serif', AZUL);
+  centro(`por completar la simulación laboral «Una semana como analista de datos en ${J.banco}»`, 610, '600 30px Poppins, sans-serif', AZUL);
   centro('COUNT · SUM · AVG · MIN · MAX · GROUP BY · HAVING', 658, '600 24px "JetBrains Mono", Consolas, monospace', GRIS);
-  centro('Sistemas de Gestión de Bases de Datos · Semana 6 · Universidad Internacional del Ecuador', 704, '400 24px Poppins, sans-serif', GRIS);
+  centro(`Funciones de agregación y agrupación en SQL · ${J.banco} es un banco ficticio con fines educativos`, 704, '400 22px Poppins, sans-serif', GRIS);
+  centro('Sistemas de Gestión de Bases de Datos · Semana 6 · Universidad Internacional del Ecuador', 738, '400 22px Poppins, sans-serif', GRIS);
   const a = aciertos(), p = Math.round(a / TOTAL * 100);
-  const datos = [[`${a} de ${TOTAL}`, 'aciertos'], [`${p} %`, 'de logro'], [rango(p), 'nivel alcanzado']];
+  const datos = [[`${a} de ${TOTAL}`, 'solicitudes bien resueltas'], [`${p} %`, 'de precisión'], [rango(p), 'cargo alcanzado']];
   datos.forEach(([v, et], i) => {
-    const cx = W / 2 + (i - 1) * 420, y = 760;
+    const cx = W / 2 + (i - 1) * 420, y = 790;
     x.fillStyle = i === 2 ? '#fdf2f7' : '#eef3fb'; x.strokeStyle = i === 2 ? MAG : AZUL; x.lineWidth = 2;
     x.beginPath();
     if (x.roundRect) x.roundRect(cx - 190, y, 380, 110, 18); else x.rect(cx - 190, y, 380, 110);
@@ -562,7 +598,7 @@ async function certificado() {
   $('#certzona').innerHTML = `<img class="cert" src="${url}" alt="Certificado de ${esc(E.nombre)} ${esc(E.apellido)}">
     <div class="fila-btn"><a class="btn grande" id="descargar" href="${url}" download="${esc(archivo)}">${ICONO.descargar} Descargar certificado</a></div>
     <p class="suave">En el celular también puedes mantener presionada la imagen para guardarla.</p>
-    <div class="fila-btn"><button class="btn sec" id="mapa">${ICONO.mapa} Volver al mapa</button></div>`;
+    <div class="fila-btn"><button class="btn sec" id="mapa">${ICONO.agenda} Volver a la agenda</button></div>`;
   document.querySelector('.card .suave').remove();
   $('#mapa').onclick = mapa;
   confeti();
