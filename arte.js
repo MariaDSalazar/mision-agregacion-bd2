@@ -85,6 +85,7 @@ const ICONO = {
   candado: ic('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),
   estrella: ic('<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z" fill="currentColor"/>'),
   bien: ic('<path d="m4 12 5 5L20 6"/>'),
+  cerrar: ic('<path d="M6 6l12 12M18 6 6 18"/>'),
   sig: ic('<path d="M5 12h14M13 6l6 6-6 6"/>'),
   ant: ic('<path d="M19 12H5M11 6l-6 6 6 6"/>'),
   play: ic('<path d="M7 4v16l13-8z" fill="currentColor"/>'),

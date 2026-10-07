@@ -26,7 +26,7 @@ h2 { font-size: 1.2rem; display: flex; align-items: center; gap: .45em; }
 .logo b { color: var(--dorado); }
 .jugador { font-size: .82rem; text-align: right; opacity: .9; }
 .jugador b { color: var(--dorado); }
-main { padding: 16px; max-width: 980px; margin: 0 auto; }
+main { padding: 16px; max-width: 1100px; margin: 0 auto; }
 
 .card { background: var(--fondo-card); color: var(--texto); border-radius: 18px; padding: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, .25); margin-bottom: 16px; }
 .card h2 { color: var(--azul); }
@@ -226,9 +226,10 @@ table.res td { padding: 5px 12px; border: 1px solid #e3e8ee; }
 @keyframes cae { to { transform: translateY(110vh) rotate(720deg); } }
 .cert { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); background: #fff; display: block; }
 
-@media (min-width: 760px) {
-  .reto-cuerpo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-  .portada .dato { width: 170px; }
+@media (min-width: 760px) { .portada .dato { width: 170px; } }
+/* tabla y respuesta lado a lado solo cuando la tabla entra completa */
+@media (min-width: 1000px) {
+  .reto-cuerpo { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; align-items: start; }
 }
 
 /* código sin ligaduras: que >= se vea como se escribe */
@@ -250,4 +251,67 @@ pre.sql, code, .linea, .op.cod, table.datos, table.res, .chip, .op.cod, .ficha, 
   .gafete .banco span { display: none; }
   .kpi b { font-size: 1.2rem; }
   .avatar { width: 38px; height: 38px; font-size: .85rem; }
+}
+
+/* ---------- retroalimentación en ventana superpuesta (<dialog>) ---------- */
+html:has(dialog[open]) { overflow: hidden; }
+#dlg {
+  padding: 0; border: 0; border-radius: 20px; background: #fff; color: var(--texto); overflow: hidden;
+  width: min(920px, calc(100vw - 32px)); max-width: none;
+  max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); box-shadow: 0 24px 70px rgba(0, 0, 0, .5);
+}
+#dlg[open] { display: flex; flex-direction: column; animation: aparece .3s ease-out; }
+#dlg::backdrop { background: rgba(0, 18, 46, .72); backdrop-filter: blur(3px); }
+@keyframes aparece { from { opacity: 0; transform: translateY(28px) scale(.97); } }
+.dlg-cuerpo { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; padding: 18px 20px 8px; }
+.dlg-cuerpo .retro { margin-top: 0; }
+.dlg-cuerpo .explica { margin: 12px 2px 0; font-weight: 600; }
+.dlg-pie { flex: none; display: flex; gap: 10px; padding: 12px 20px; border-top: 1px solid #e3e8ef; background: #f7f9fc; }
+.dlg-pie .btn.grande { flex: 1; width: auto; }
+/* en celular: hoja que sube desde abajo */
+@media (max-width: 600px) {
+  #dlg { width: 100%; margin: auto 0 0; border-radius: 22px 22px 0 0; max-height: calc(100vh - 36px); max-height: calc(100dvh - 36px); }
+  #dlg[open] { animation: sube .3s ease-out; }
+  .dlg-cuerpo { padding: 16px 12px 8px; }
+  .dlg-pie { padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); }
+  .dlg-pie .btn { padding: 13px 14px; font-size: 1rem; }
+}
+@keyframes sube { from { transform: translateY(100%); } }
+
+/* sombra lateral que avisa que la tabla se puede deslizar */
+.tabla-wrap {
+  background:
+    linear-gradient(90deg, #fff 30%, rgba(255, 255, 255, 0)) 0 0 / 28px 100% no-repeat local,
+    linear-gradient(270deg, #fff 30%, rgba(255, 255, 255, 0)) 100% 0 / 28px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgba(0, 44, 113, .28), transparent) 0 0 / 12px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 44, 113, .28), transparent) 100% 0 / 12px 100% no-repeat scroll;
+}
+
+/* ---------- pantallas pequeñas y grandes ---------- */
+@media (max-width: 420px) {
+  .logo { font-size: 1rem; }
+  .jugador { font-size: .72rem; }
+  .cabeza-reto .chip { font-size: .72rem; padding: 4px 9px; }
+  .cabeza-reto .btn.sec { padding: 9px 14px; }
+  .nodo { grid-template-columns: 50px 1fr auto; gap: 10px; padding: 12px; }
+  .nodo .medalla { width: 50px; height: 50px; font-size: 1.3rem; }
+  .nodo b { font-size: .95rem; }
+  .kpis { gap: 6px; }
+  .kpi { font-size: .68rem; }
+  .cond { grid-template-columns: 1fr; }
+  .cond .dos button { flex: 1; }
+  .retro { grid-template-columns: 70px 1fr; }
+  .retro .dato, .retro .sticker { width: 70px; }
+}
+@media (min-width: 1400px) {
+  html { font-size: 17px; }
+  main { max-width: 1240px; }
+}
+@media (max-width: 380px) { .logo span { display: none; } .jugador { max-width: 80vw; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after, #dlg[open] { animation: none !important; transition: none !important; }
+}
+@media (max-width: 420px) {
+  .nodo { grid-template-columns: 50px 1fr; row-gap: 6px; }
+  .nodo > :last-child { grid-column: 2; justify-self: start; }
 }
